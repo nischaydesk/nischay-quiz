@@ -120,16 +120,13 @@ body.light .topbar{background:color-mix(in srgb,#f8fbff 90%,transparent)}
 
 <script>
 const GOOGLE_SCRIPT_URL="https://script.google.com/macros/s/AKfycbzsigV1wqX5pnlPy83RPGCV10f-rrN2XK2meZkI70_w7y9SQLv8ZQtcxgB1J9RvjaRd/exec";
-// IMPORTANT: Client-side passwords are visible to users. Configure admin authorization in Apps Script before public deployment.
 const ADMIN_PASSWORD="Prince@2028";
 const DISTRICTS=["अररिया","अरवल","औरंगाबाद","बांका","बेगूसराय","भागलपुर","भोजपुर","बक्सर","दरभंगा","पूर्वी चंपारण","गया","गोपालगंज","जमुई","जहानाबाद","कैमूर","कटिहार","खगड़िया","किशनगंज","लखीसराय","मधेपुरा","मधुबनी","मुंगेर","मुजफ्फरपुर","नालंदा","नवादा","पटना","पूर्णिया","रोहतास","सहरसा","समस्तीपुर","सारण","शेखपुरा","शिवहर","सीतामढ़ी","सीवान","सुपौल","वैशाली","पश्चिमी चंपारण"];
 const FALLBACK_QUESTIONS={
 "10th":[
 {q:{hi:"कमरे के ताप पर द्रव अवस्था में रहने वाली एकमात्र अधातु कौन-सी है?",en:"Which non-metal is liquid at room temperature?"},o:{hi:["पारा","ब्रोमीन","आयोडीन","क्लोरीन"],en:["Mercury","Bromine","Iodine","Chlorine"]},a:1,f:{hi:"ब्रोमीन द्रव अधातु है, जबकि पारा द्रव धातु है।",en:"Bromine is a liquid non-metal; mercury is a liquid metal."}},
 {q:{hi:"प्रकाश के परावर्तन के कितने मुख्य नियम हैं?",en:"How many main laws of reflection are there?"},o:{hi:["1","2","3","4"],en:["1","2","3","4"]},a:1,f:{hi:"प्रकाश के परावर्तन के दो मुख्य नियम हैं।",en:"There are two main laws of reflection."}},
-{q:{hi:"मानव हृदय में कितने कोष्ठ होते हैं?",en:"How many chambers does the human heart have?"},o:{hi:["2","3","4","5"],en:["2","3","4","5"]},a:2,f:{hi:"मानव हृदय में चार कोष्ठ होते हैं।",en:"The human heart has four chambers."}},
-{q:{hi:"बिहार का शोक किस नदी को कहा जाता है?",en:"Which river is called the Sorrow of Bihar?"},o:{hi:["गंगा","कोसी","गंडक","सोन"],en:["Ganga","Kosi","Gandak","Son"]},a:1,f:{hi:"कोसी नदी को बिहार का शोक कहा जाता है।",en:"The Kosi River is known as the Sorrow of Bihar."}},
-{q:{hi:"कार्य की SI इकाई क्या है?",en:"What is the SI unit of work?"},o:{hi:["न्यूटन","जूल","वाट","पास्कल"],en:["Newton","Joule","Watt","Pascal"]},a:1,f:{hi:"कार्य और ऊर्जा की SI इकाई जूल है।",en:"The SI unit of work and energy is joule."}}],
+{q:{hi:"मानव हृदय में कितने कोष्ठ होते हैं?",en:"How many chambers does the human heart have?"},o:{hi:["2","3","4","5"],en:["2","3","4","5"]},a:2,f:{hi:"मानव हृदय में चार कोष्ठ होते हैं।",en:"The human heart has four chambers."}}],
 "11th":[
 {q:{hi:"कार्य और ऊर्जा की SI इकाई क्या है?",en:"What is the SI unit of work and energy?"},o:{hi:["न्यूटन","जूल","वाट","पास्कल"],en:["Newton","Joule","Watt","Pascal"]},a:1,f:{hi:"कार्य और ऊर्जा दोनों की इकाई जूल है।",en:"Both work and energy are measured in joules."}},
 {q:{hi:"कोशिका का पावरहाउस किसे कहा जाता है?",en:"Which organelle is called the powerhouse of the cell?"},o:{hi:["माइटोकॉन्ड्रिया","राइबोसोम","लाइसोसोम","गॉल्जीकाय"],en:["Mitochondria","Ribosome","Lysosome","Golgi apparatus"]},a:0,f:{hi:"माइटोकॉन्ड्रिया में ATP का निर्माण होता है।",en:"Mitochondria produce much of the cell's ATP."}}],
@@ -137,8 +134,13 @@ const FALLBACK_QUESTIONS={
 {q:{hi:"विद्युत क्षेत्र की तीव्रता का SI मात्रक क्या है?",en:"What is the SI unit of electric field intensity?"},o:{hi:["N/C","V/m","दोनों","J/C"],en:["N/C","V/m","Both","J/C"]},a:2,f:{hi:"N/C और V/m दोनों समतुल्य SI इकाइयाँ हैं।",en:"N/C and V/m are equivalent units."}},
 {q:{hi:"DNA के डबल हेलिक्स मॉडल का प्रतिपादन किसने किया?",en:"Who proposed the double-helix model of DNA?"},o:{hi:["वाटसन और क्रिक","मेंडल","डार्विन","लामार्क"],en:["Watson and Crick","Mendel","Darwin","Lamarck"]},a:0,f:{hi:"वाटसन और क्रिक ने 1953 में मॉडल प्रस्तुत किया।",en:"Watson and Crick proposed the model in 1953."}}]
 };
-let currentLang="hi",currentClass="10th",currentQuestions=[],qIdx=0,score=0,answered=false,selectedAnswer=null,timerInterval=null,timeLeft=900,quizStarted=false,submitting=false,todayKey=istDate(),correctCount=0,resultWasAuto=false,resultStudentName="",resultDistrict="";
+
+let currentLang="hi",currentClass="10th",currentQuestions=[],qIdx=0,score=0,answered=false,selectedAnswer=null,timerInterval=null,timeLeft=900,quizStarted=false,submitting=false,todayKey="",correctCount=0,resultWasAuto=false,resultStudentName="",resultDistrict="";
 const $=id=>document.getElementById(id);
+
+// --- सुरक्षित स्टोरेज (Crash-Proof) ---
+function safeStorageGet(k){ try{return localStorage.getItem(k)}catch(e){return null} }
+function safeStorageSet(k,v){ try{localStorage.setItem(k,v)}catch(e){} }
 
 // --- साउंड सिस्टम (Sound System) ---
 function playClickSound() {
@@ -152,7 +154,6 @@ function playClickSound() {
     osc.connect(gainNode);
     gainNode.connect(audioCtx.destination);
 
-    // एक हल्की सी 'पॉप' (Pop) या 'टिक' (Tick) आवाज़
     osc.type = "sine";
     osc.frequency.setValueAtTime(800, audioCtx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
@@ -162,54 +163,171 @@ function playClickSound() {
 
     osc.start(audioCtx.currentTime);
     osc.stop(audioCtx.currentTime + 0.1);
-  } catch (e) {
-    // अगर ब्राउज़र साउंड सपोर्ट नहीं करता, तो इग्नोर करें
-  }
+  } catch (e) {}
 }
-// ------------------------------------
 
-function istDate(){return new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date())}
+function istDate(){
+    try {
+        return new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+    } catch(e) {
+        const d = new Date();
+        return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,'0') + "-" + String(d.getDate()).padStart(2,'0');
+    }
+}
+todayKey = istDate();
+
 async function syncWorldTime(){try{const r=await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");if(r.ok){const d=await r.json();todayKey=d.datetime.slice(0,10)}}catch(e){}checkDailyAttempt()}
 function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600)}
 function switchView(id){if(quizStarted&&id!=="view-quiz"&&id!=="view-result"){if(!confirm(currentLang==="hi"?"टेस्ट चल रहा है। बाहर निकलने पर आपका प्रयास खराब हो सकता है। बाहर जाएं?":"Quiz is in progress. Leaving may lose your attempt. Leave?"))return;clearInterval(timerInterval);quizStarted=false}document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
-function applyTheme(theme){const light=theme==="light";document.body.classList.toggle("light",light);localStorage.setItem("nischay_theme",light?"light":"dark");const b=$("themeBtn");b.textContent=light?"🌙":"☀️";b.setAttribute("aria-label",light?"Switch to dark theme":"Switch to light theme");b.title=light?(currentLang==="hi"?"डार्क मोड":"Dark mode"):(currentLang==="hi"?"लाइट मोड":"Light mode")}
+function applyTheme(theme){
+  const light=theme==="light";
+  document.body.classList.toggle("light",light);
+  safeStorageSet("nischay_theme",light?"light":"dark");
+  const b=$("themeBtn");
+  if(b){
+      b.textContent=light?"🌙":"☀️";
+      b.setAttribute("aria-label",light?"Switch to dark theme":"Switch to light theme");
+      b.title=light?(currentLang==="hi"?"डार्क मोड":"Dark mode"):(currentLang==="hi"?"लाइट मोड":"Light mode");
+  }
+}
 function toggleTheme(){applyTheme(document.body.classList.contains("light")?"dark":"light")}
 function localized(value,lang=currentLang,fallback=""){if(value&&typeof value==="object"&&!Array.isArray(value)){const v=value[lang]??value.hi??value.en??value.english??value.hindi;return v==null?fallback:String(v)}if(value==null)return fallback;return String(value)}
 function setText(id,hi,en){const el=$(id);if(el)el.textContent=currentLang==="en"?en:hi}
-function renderResultLanguage(){const en=currentLang==="en";setText("correctLabel","सही उत्तर","Correct answers");setText("wrongLabel","गलत / छोड़े","Wrong / skipped");setText("percentLabel","प्रतिशत","Percentage");setText("homeBtn","⌂ होम और मेरिट लिस्ट पर जाएं","⌂ Home & merit list");setText("waCardTitle","📢 रोज़ के अपडेट पाएं","📢 Get daily updates");setText("waCardDesc","दैनिक सवाल और टॉपर अपडेट के लिए आधिकारिक WhatsApp चैनल से जुड़ें।","Join the official WhatsApp channel for daily questions and topper updates.");const waLinks=document.querySelectorAll("a.wa");if(waLinks[1])waLinks[1].textContent=en?"Join WhatsApp channel ↗":"WhatsApp चैनल से जुड़ें ↗";if($("resHeading").dataset.completed==="true")$("resHeading").textContent=resultWasAuto?(en?"⏱ Time is up!":"⏱ समय पूरा हुआ!"):(en?"Great work! Quiz completed 🎉":"बहुत बढ़िया! टेस्ट पूरा हुआ 🎉");if(resultStudentName||resultDistrict)$("resSummary").textContent=`${resultStudentName} • ${resultDistrict} • ${en?"Class":"कक्षा"} ${currentClass}`;if($("resMsg").dataset.status==="sending")$("resMsg").textContent=en?"Your result is being sent to Google Sheets.":"आपका परिणाम Google Sheets पर भेजा जा रहा है।";else if($("resMsg").dataset.status==="sent")$("resMsg").textContent=en?"Submission request sent. The leaderboard may take a moment to update.":"सबमिशन अनुरोध भेज दिया गया है। मेरिट लिस्ट अपडेट होने में कुछ समय लग सकता है।";else if($("resMsg").dataset.status==="error")$("resMsg").textContent=en?"Submission could not be confirmed due to a network error. Please contact the administrator.":"नेटवर्क समस्या के कारण सबमिशन की पुष्टि नहीं हो सकी। कृपया एडमिन से संपर्क करें।"}
-function toggleLanguage(){currentLang=currentLang==="hi"?"en":"hi";$("langBtn").textContent=currentLang==="hi"?"EN":"हिंदी";const en=currentLang==="en";const set=(id,hi,eng)=>{const el=$(id);if(el)el.textContent=en?eng:hi};
-$("heroTitle").innerHTML=en?"Learn every day.<br><span>Move ahead every day.</span>":"हर दिन सीखें।<br><span>हर दिन आगे बढ़ें।</span>";
-set("heroSub","बिहार बोर्ड कक्षा 10वीं, 11वीं और 12वीं के लिए दैनिक ऑनलाइन क्विज़, स्मार्ट प्रश्न और लाइव मेरिट लिस्ट।","Daily quizzes, smart questions and a live merit list for Bihar Board classes 10, 11 and 12.");set("heroCta","आज की चुनौती शुरू करें ↗","Start today's challenge ↗");set("stat1","कक्षा-वार टेस्ट","Class-wise tests");set("stat2","मिनट की समय-सीमा","Minute time limit");set("stat3","लाइव मेरिट लिस्ट","Live merit list");set("startHeading","🚀 अपना टेस्ट शुरू करें","🚀 Start your test");set("startSub","जानकारी भरें और आज का टेस्ट दें।","Enter your details and take today's quiz.");set("rulesTitle","📌 परीक्षा के नियम","📌 Assessment rules");
-$("rulesList").innerHTML=en?'<li>One attempt per class per day in this browser.</li><li>20 questions in 15 minutes; auto-submit at timeout.</li><li>Top 10 shows each matching name’s best score.</li><li>Question sets rotate based on participation dates found in Google Sheets.</li>':'<li>एक डिवाइस पर प्रति कक्षा, प्रतिदिन एक प्रयास।</li><li>20 प्रश्नों के लिए 15 मिनट। समय पूरा होने पर टेस्ट सबमिट होगा।</li><li>टॉप 10 सूची में हर नाम का सर्वश्रेष्ठ स्कोर दिखेगा।</li><li>प्रश्नों का अगला सेट Google Sheet में दर्ज भागीदारी वाले दिनों के अनुसार बदलता है।</li>';
-set("nameLabel","विद्यार्थी का पूरा नाम","Student full name");$("studentName").placeholder=en?"e.g. Prince Kumar":"जैसे: प्रिंस कुमार";set("districtLabel","अपना ज़िला चुनें","Select your district");const ds=$("districtSelect").options[0];if(ds)ds.textContent=en?"-- Select your district --":"-- अपना ज़िला चुनें --";set("startBtn","आज का टेस्ट शुरू करें →","Start today's quiz →");set("dataHint","आपका नाम, ज़िला, कक्षा और स्कोर मेरिट लिस्ट के लिए Google Sheets पर भेजे जाते हैं।","Your name, district, class and score are sent to Google Sheets for the merit list.");set("lbTitle","🏆 लाइव टॉप 10","🏆 Live Top 10");set("refreshBtn","↻ Refresh","↻ Refresh");set("thRank","रैंक","Rank");set("thName","विद्यार्थी","Student");set("thDistrict","ज़िला","District");set("thScore","स्कोर","Score");set("lbFoot","सूची Google Sheets के उपलब्ध रिकॉर्ड से तैयार होती है।","Rankings are built from available Google Sheets records.");set("backBtn","← होम पर वापस","← Back home");set("policyLink","गोपनीयता नीति एवं शर्तें","Privacy & Terms");set("waText","WhatsApp चैनल","WhatsApp channel");
-$("policyHi").classList.toggle("hidden",en);$("policyEn").classList.toggle("hidden",!en);set("adminTitle","🔒 Admin Authentication","🔒 Admin Authentication");set("adminErrorMsg","गलत पासवर्ड।","Incorrect password.");const adminButtons=$("adminLoginModal").querySelectorAll("button");if(adminButtons[0])adminButtons[0].textContent=en?"Log in →":"लॉगिन करें →";if(adminButtons[1])adminButtons[1].textContent=en?"Cancel":"रद्द करें";
-updateClassLabels();checkDailyAttempt();renderResultLanguage();if(quizStarted&&$("view-quiz").classList.contains("active"))renderQuestion();loadLeaderboard();applyTheme(document.body.classList.contains("light")?"light":"dark")}
-function updateClassLabels(){["10th","11th","12th"].forEach(c=>{$("tab"+c.slice(0,2)).classList.toggle("active",currentClass===c)});$("lbClass").textContent=currentLang==="hi"?({"10th":"10वीं","11th":"11वीं","12th":"12वीं"}[currentClass]):currentClass;$("adminSelectedClass").textContent=currentClass}
+
+function renderResultLanguage(){
+    const en=currentLang==="en";
+    setText("correctLabel","सही उत्तर","Correct answers");
+    setText("wrongLabel","गलत / छोड़े","Wrong / skipped");
+    setText("percentLabel","प्रतिशत","Percentage");
+    setText("homeBtn","⌂ होम और मेरिट लिस्ट पर जाएं","⌂ Home & merit list");
+    setText("waCardTitle","📢 रोज़ के अपडेट पाएं","📢 Get daily updates");
+    setText("waCardDesc","दैनिक सवाल और टॉपर अपडेट के लिए आधिकारिक WhatsApp चैनल से जुड़ें।","Join the official WhatsApp channel for daily questions and topper updates.");
+    const waLinks=document.querySelectorAll("a.wa");
+    if(waLinks[1])waLinks[1].textContent=en?"Join WhatsApp channel ↗":"WhatsApp चैनल से जुड़ें ↗";
+    const resH=$("resHeading");
+    if(resH&&resH.dataset.completed==="true")resH.textContent=resultWasAuto?(en?"⏱ Time is up!":"⏱ समय पूरा हुआ!"):(en?"Great work! Quiz completed 🎉":"बहुत बढ़िया! टेस्ट पूरा हुआ 🎉");
+    if(resultStudentName||resultDistrict){
+        const rs=$("resSummary");
+        if(rs)rs.textContent=`${resultStudentName} • ${resultDistrict} • ${en?"Class":"कक्षा"} ${currentClass}`;
+    }
+    const rm=$("resMsg");
+    if(rm){
+        if(rm.dataset.status==="sending")rm.textContent=en?"Your result is being sent to Google Sheets.":"आपका परिणाम Google Sheets पर भेजा जा रहा है।";
+        else if(rm.dataset.status==="sent")rm.textContent=en?"Submission request sent. The leaderboard may take a moment to update.":"सबमिशन अनुरोध भेज दिया गया है। मेरिट लिस्ट अपडेट होने में कुछ समय लग सकता है।";
+        else if(rm.dataset.status==="error")rm.textContent=en?"Submission could not be confirmed due to a network error. Please contact the administrator.":"नेटवर्क समस्या के कारण सबमिशन की पुष्टि नहीं हो सकी। कृपया एडमिन से संपर्क करें।";
+    }
+}
+
+function toggleLanguage(){
+    currentLang=currentLang==="hi"?"en":"hi";
+    const lBtn=$("langBtn"); if(lBtn) lBtn.textContent=currentLang==="hi"?"EN":"हिंदी";
+    const en=currentLang==="en";
+    const set=(id,hi,eng)=>{const el=$(id);if(el)el.textContent=en?eng:hi};
+    const ht=$("heroTitle"); if(ht) ht.innerHTML=en?"Learn every day.<br><span>Move ahead every day.</span>":"हर दिन सीखें।<br><span>हर दिन आगे बढ़ें।</span>";
+    set("heroSub","बिहार बोर्ड कक्षा 10वीं, 11वीं और 12वीं के लिए दैनिक ऑनलाइन क्विज़, स्मार्ट प्रश्न और लाइव मेरिट लिस्ट।","Daily quizzes, smart questions and a live merit list for Bihar Board classes 10, 11 and 12.");
+    set("heroCta","आज की चुनौती शुरू करें ↗","Start today's challenge ↗");
+    set("stat1","कक्षा-वार टेस्ट","Class-wise tests");
+    set("stat2","मिनट की समय-सीमा","Minute time limit");
+    set("stat3","लाइव मेरिट लिस्ट","Live merit list");
+    set("startHeading","🚀 अपना टेस्ट शुरू करें","🚀 Start your test");
+    set("startSub","जानकारी भरें और आज का टेस्ट दें।","Enter your details and take today's quiz.");
+    set("rulesTitle","📌 परीक्षा के नियम","📌 Assessment rules");
+    const rl=$("rulesList");
+    if(rl) rl.innerHTML=en?'<li>One attempt per class per day in this browser.</li><li>20 questions in 15 minutes; auto-submit at timeout.</li><li>Top 10 shows each matching name’s best score.</li><li>Question sets rotate based on participation dates found in Google Sheets.</li>':'<li>एक डिवाइस पर प्रति कक्षा, प्रतिदिन एक प्रयास।</li><li>20 प्रश्नों के लिए 15 मिनट। समय पूरा होने पर टेस्ट सबमिट होगा।</li><li>टॉप 10 सूची में हर नाम का सर्वश्रेष्ठ स्कोर दिखेगा।</li><li>प्रश्नों का अगला सेट Google Sheet में दर्ज भागीदारी वाले दिनों के अनुसार बदलता है।</li>';
+    set("nameLabel","विद्यार्थी का पूरा नाम","Student full name");
+    const sn=$("studentName"); if(sn) sn.placeholder=en?"e.g. Prince Kumar":"जैसे: प्रिंस कुमार";
+    set("districtLabel","अपना ज़िला चुनें","Select your district");
+    const dSel=$("districtSelect");
+    if(dSel&&dSel.options[0])dSel.options[0].textContent=en?"-- Select your district --":"-- अपना ज़िला चुनें --";
+    set("startBtn","आज का टेस्ट शुरू करें →","Start today's quiz →");
+    set("dataHint","आपका नाम, ज़िला, कक्षा और स्कोर मेरिट लिस्ट के लिए Google Sheets पर भेजे जाते हैं।","Your name, district, class and score are sent to Google Sheets for the merit list.");
+    set("lbTitle","🏆 लाइव टॉप 10","🏆 Live Top 10");
+    set("refreshBtn","↻ Refresh","↻ Refresh");
+    set("thRank","रैंक","Rank");
+    set("thName","विद्यार्थी","Student");
+    set("thDistrict","ज़िला","District");
+    set("thScore","स्कोर","Score");
+    set("lbFoot","सूची Google Sheets के उपलब्ध रिकॉर्ड से तैयार होती है।","Rankings are built from available Google Sheets records.");
+    set("backBtn","← होम पर वापस","← Back home");
+    set("policyLink","गोपनीयता नीति एवं शर्तें","Privacy & Terms");
+    set("waText","WhatsApp चैनल","WhatsApp channel");
+    const ph=$("policyHi"),pe=$("policyEn");
+    if(ph) ph.classList.toggle("hidden",en);
+    if(pe) pe.classList.toggle("hidden",!en);
+    set("adminTitle","🔒 Admin Authentication","🔒 Admin Authentication");
+    set("adminErrorMsg","गलत पासवर्ड।","Incorrect password.");
+    const am=$("adminLoginModal");
+    if(am){
+        const adminButtons=am.querySelectorAll("button");
+        if(adminButtons[0])adminButtons[0].textContent=en?"Log in →":"लॉगिन करें →";
+        if(adminButtons[1])adminButtons[1].textContent=en?"Cancel":"रद्द करें";
+    }
+    updateClassLabels();checkDailyAttempt();renderResultLanguage();
+    const vq=$("view-quiz");
+    if(quizStarted&&vq&&vq.classList.contains("active"))renderQuestion();
+    loadLeaderboard();
+    applyTheme(document.body.classList.contains("light")?"light":"dark");
+}
+
+function updateClassLabels(){
+    ["10th","11th","12th"].forEach(c=>{
+        const tb=$("tab"+c.slice(0,2));
+        if(tb) tb.classList.toggle("active",currentClass===c);
+    });
+    const lc=$("lbClass");
+    if(lc) lc.textContent=currentLang==="hi"?({"10th":"10वीं","11th":"11वीं","12th":"12वीं"}[currentClass]):currentClass;
+    const ac=$("adminSelectedClass");
+    if(ac) ac.textContent=currentClass;
+}
+
 function selectClass(cls){if(quizStarted)return;currentClass=cls;updateClassLabels();checkDailyAttempt();loadLeaderboard()}
-function fillDistricts(){DISTRICTS.forEach(d=>{const o=document.createElement("option");o.value=d;o.textContent=d;$("districtSelect").appendChild(o)})}
-function checkDailyAttempt(){const key=`nischay_attempt_${currentClass}_${todayKey}`;const attempted=localStorage.getItem(key);$("attemptNotice").classList.toggle("show",!!attempted);$("attemptNotice").textContent=currentLang==="hi"?"⚠️ आप आज इस कक्षा का टेस्ट इस ब्राउज़र पर दे चुके हैं। कल फिर आएं।":"⚠️ Today's quiz for this class has already been completed in this browser."; $("startBtn").disabled=!!attempted\vert{}\vert{}submitting;$("startBtn").textContent=attempted?(currentLang==="hi"?"आज का टेस्ट पूरा हो चुका है ✓":"Today's test completed ✓"):(currentLang==="hi"?"आज का टेस्ट शुरू करें →":"Start today's quiz →")}
+
+function fillDistricts(){
+    const ds=$("districtSelect");
+    if(!ds) return;
+    DISTRICTS.forEach(d=>{const o=document.createElement("option");o.value=d;o.textContent=d;ds.appendChild(o)});
+}
+
+function checkDailyAttempt(){
+    const key=`nischay_attempt_${currentClass}_${todayKey}`;
+    const attempted=safeStorageGet(key);
+    const an=$("attemptNotice");
+    if(an){
+        an.classList.toggle("show",!!attempted);
+        an.textContent=currentLang==="hi"?"⚠️ आप आज इस कक्षा का टेस्ट इस ब्राउज़र पर दे चुके हैं। कल फिर आएं।":"⚠️ Today's quiz for this class has already been completed in this browser.";
+    }
+    const sb=$("startBtn");
+    if(sb){
+        sb.disabled=!!attempted||submitting;
+        sb.textContent=attempted?(currentLang==="hi"?"आज का टेस्ट पूरा हो चुका है ✓":"Today's test completed ✓"):(currentLang==="hi"?"आज का टेस्ट शुरू करें →":"Start today's quiz →");
+    }
+}
+
 async function fetchSheet(){const r=await fetch(GOOGLE_SCRIPT_URL+"?nocache="+Date.now());if(!r.ok)throw new Error("Sheet read failed");const data=await r.json();if(!Array.isArray(data))throw new Error("Unexpected sheet data");return data}
 function rowValue(row,...keys){if(!row||typeof row!=="object")return "";for(const key of keys){if(row[key]!==undefined&&row[key]!==null&&String(row[key]).trim()!=="")return row[key]}const lookup=new Map(Object.keys(row).map(k=>[k.toLowerCase().replace(/[^a-z0-9]/g,""),k]));for(const key of keys){const actual=lookup.get(key.toLowerCase().replace(/[^a-z0-9]/g,""));if(actual&&row[actual]!==undefined&&row[actual]!==null&&String(row[actual]).trim()!=="")return row[actual]}return ""}
 function normalizeText(v){return String(v??"").trim().toLocaleLowerCase()}
 function normalizeDate(v){let x=String(v??"").trim();if(!x)return "";if(/^\d{4}-\d{2}-\d{2}/.test(x))return x.slice(0,10).toLowerCase();const m=x.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);if(m){let a=Number(m[1]),b=Number(m[2]),y=m[3];if(a>12)return `${y}-${String(b).padStart(2,"0")}-${String(a).padStart(2,"0")}`;return `${y}-${String(a).padStart(2,"0")}-${String(b).padStart(2,"0")}`}return x.toLocaleLowerCase()}
 function rowClass(row){return normalizeText(rowValue(row,"studentClass","class","Class","grade"))}
 function rowDate(row){return normalizeDate(rowValue(row,"date","Date","timestamp","Timestamp"))}
-async function loadSmartQuestions(){let pool=[];try{const r=await fetch("./questions.json?v="+encodeURIComponent(todayKey));if(r.ok){const d=await r.json();if(Array.isArray(d))pool=d;else if(d&&typeof d==="object"){const cls=Object.keys(d).find(k=>normalizeText(k)===normalizeText(currentClass));if(cls&&Array.isArray(d[cls]))pool=d[cls]}}}catch(e){console.info("questions.json unavailable; fallback pool used")}if(!pool.length)pool=FALLBACK_QUESTIONS[currentClass]||[];pool=pool.filter(q=>q&&typeof q==="object");if(!pool.length)throw new Error(currentLang==="hi"?"इस कक्षा के लिए प्रश्न उपलब्ध नहीं हैं।":"No questions are available for this class.");
-let days=0;try{const rows=await fetchSheet();const dates=new Set(rows.filter(r=>rowClass(r)===normalizeText(currentClass)).map(rowDate).filter(d=>d&&d!==normalizeDate(todayKey)));days=dates.size}catch(e){console.warn("Could not read sheet dates; using first set",e)}const start=(days*20)%pool.length;let selected=[];for(let i=0;i<Math.min(20,pool.length);i++)selected.push(pool[(start+i)%pool.length]);return selected}
-async function startQuiz(){if(quizStarted||submitting)return;const name=$("studentName").value.trim(),district=$("districtSelect").value;if(!name||!district){toast(currentLang==="hi"?"कृपया पूरा नाम और ज़िला भरें।":"Please enter your name and select a district.");return}if(localStorage.getItem(`nischay_attempt_${currentClass}_${todayKey}`)){checkDailyAttempt();return}
-$("startBtn").disabled=true;$("startBtn").textContent=currentLang==="hi"?"प्रश्न लोड हो रहे हैं…":"Loading questions…";
+
+async function loadSmartQuestions(){let pool=[];try{const r=await fetch("./questions.json?v="+encodeURIComponent(todayKey));if(r.ok){const d=await r.json();if(Array.isArray(d))pool=d;else if(d&&typeof d==="object"){const cls=Object.keys(d).find(k=>normalizeText(k)===normalizeText(currentClass));if(cls&&Array.isArray(d[cls]))pool=d[cls]}}}catch(e){}if(!pool.length)pool=FALLBACK_QUESTIONS[currentClass]||[];pool=pool.filter(q=>q&&typeof q==="object");if(!pool.length)throw new Error(currentLang==="hi"?"इस कक्षा के लिए प्रश्न उपलब्ध नहीं हैं।":"No questions are available for this class.");
+let days=0;try{const rows=await fetchSheet();const dates=new Set(rows.filter(r=>rowClass(r)===normalizeText(currentClass)).map(rowDate).filter(d=>d&&d!==normalizeDate(todayKey)));days=dates.size}catch(e){}const start=(days*20)%pool.length;let selected=[];for(let i=0;i<Math.min(20,pool.length);i++)selected.push(pool[(start+i)%pool.length]);return selected}
+
+async function startQuiz(){if(quizStarted||submitting)return;const sn=$("studentName"),ds=$("districtSelect");const name=sn?sn.value.trim():"",district=ds?ds.value:"";if(!name||!district){toast(currentLang==="hi"?"कृपया पूरा नाम और ज़िला भरें।":"Please enter your name and select a district.");return}if(safeStorageGet(`nischay_attempt_${currentClass}_${todayKey}`)){checkDailyAttempt();return}
+const sb=$("startBtn");if(sb){sb.disabled=true;sb.textContent=currentLang==="hi"?"प्रश्न लोड हो रहे हैं…":"Loading questions…";}
 try{currentQuestions=await loadSmartQuestions();if(!currentQuestions.length)throw new Error("No questions");if(!confirm(currentLang==="hi"?`कक्षा ${currentClass} का टेस्ट शुरू करें? आपके पास 15 मिनट हैं।`:`Start the ${currentClass} quiz? You have 15 minutes.`)){checkDailyAttempt();return}quizStarted=true;qIdx=0;score=0;correctCount=0;answered=false;selectedAnswer=null;timeLeft=900;submitting=false;switchView("view-quiz");renderQuestion();startTimer()}catch(e){toast(e.message||"प्रश्न लोड नहीं हुए।");console.error(e)}finally{if(!quizStarted)checkDailyAttempt()}}
+
 function renderQuestion(){
   const q=currentQuestions[qIdx]||{};
-  $("qBadge").textContent=(currentLang==="hi"?"प्रश्न ":"Question ")+(qIdx+1)+" / "+currentQuestions.length;
-  $("progressBar").style.width=(qIdx/currentQuestions.length*100)+"%";
-  $("qText").textContent=localized(q.q,currentLang,currentLang==="hi"?"प्रश्न उपलब्ध नहीं है":"Question unavailable");
-  $("quizClassLabel").textContent="Nischay Quiz • "+currentClass+" • "+(currentLang==="hi"?"दैनिक मूल्यांकन":"Daily Assessment");
-  $("factBox").classList.remove("show");
-  $("factBox").textContent="";
-  $("nextBtn").disabled=!answered;
-  $("nextBtn").textContent=qIdx===currentQuestions.length-1?(currentLang==="hi"?"टेस्ट सबमिट करें ✓":"Submit test ✓"):(currentLang==="hi"?"अगला प्रश्न →":"Next question →");
-  $("answerHint").textContent=answered?(currentLang==="hi"?"उत्तर लॉक हो गया":"Answer locked"):(currentLang==="hi"?"एक विकल्प चुनें":"Choose one option");
+  const qb=$("qBadge"); if(qb) qb.textContent=(currentLang==="hi"?"प्रश्न ":"Question ")+(qIdx+1)+" / "+currentQuestions.length;
+  const pb=$("progressBar"); if(pb) pb.style.width=(qIdx/currentQuestions.length*100)+"%";
+  const qt=$("qText"); if(qt) qt.textContent=localized(q.q,currentLang,currentLang==="hi"?"प्रश्न उपलब्ध नहीं है":"Question unavailable");
+  const qcl=$("quizClassLabel"); if(qcl) qcl.textContent="Nischay Quiz • "+currentClass+" • "+(currentLang==="hi"?"दैनिक मूल्यांकन":"Daily Assessment");
+  const fb=$("factBox");
+  if(fb){fb.classList.remove("show");fb.textContent="";}
+  const nb=$("nextBtn");
+  if(nb){nb.disabled=!answered;nb.textContent=qIdx===currentQuestions.length-1?(currentLang==="hi"?"टेस्ट सबमिट करें ✓":"Submit test ✓"):(currentLang==="hi"?"अगला प्रश्न →":"Next question →");}
+  const ah=$("answerHint"); if(ah) ah.textContent=answered?(currentLang==="hi"?"उत्तर लॉक हो गया":"Answer locked"):(currentLang==="hi"?"एक विकल्प चुनें":"Choose one option");
   
   let opts=[];
   if(Array.isArray(q.o)) opts=q.o;
@@ -220,58 +338,59 @@ function renderQuestion(){
   if(!Array.isArray(opts)) opts=[];
   
   const container=$("optContainer");
-  container.replaceChildren();
-  const correct=Number(q.a);
+  if(container){
+      container.replaceChildren();
+      const correct=Number(q.a);
+      
+      opts.forEach((opt,i)=>{
+        const b=document.createElement("button");
+        b.type="button";
+        b.className="option";
+        b.disabled=answered;
+        
+        const letter=document.createElement("span");
+        letter.className="letter";
+        letter.textContent=String.fromCharCode(65+i);
+        
+        const txt=document.createElement("span");
+        txt.style.flex="1";
+        txt.textContent=localized(opt,currentLang,String(opt??""));
+        
+        const statusTag=document.createElement("span");
+        statusTag.className="status-tag";
+        statusTag.style.fontSize="12px";
+        statusTag.style.fontWeight="800";
+        statusTag.style.marginLeft="auto";
+        
+        b.append(letter,txt,statusTag);
+        
+        if(answered){
+          if(i===correct){
+            b.classList.add("correct");
+            statusTag.textContent=currentLang==="hi"?"✓ सही उत्तर":"✓ Correct";
+            statusTag.style.color="var(--green)";
+          }
+          if(i===selectedAnswer&&selectedAnswer!==correct){
+            b.classList.add("wrong");
+            statusTag.textContent=currentLang==="hi"?"✗ आपका उत्तर":"✗ Your Answer";
+            statusTag.style.color="var(--red)";
+          }
+        }
+        b.onclick=()=>handleAnswer(i,b);
+        container.appendChild(b);
+      });
+  }
   
-  opts.forEach((opt,i)=>{
-    const b=document.createElement("button");
-    b.type="button";
-    b.className="option";
-    b.disabled=answered;
-    
-    const letter=document.createElement("span");
-    letter.className="letter";
-    letter.textContent=String.fromCharCode(65+i);
-    
-    const txt=document.createElement("span");
-    txt.style.flex="1";
-    txt.textContent=localized(opt,currentLang,String(opt??""));
-    
-    const statusTag=document.createElement("span");
-    statusTag.className="status-tag";
-    statusTag.style.fontSize="12px";
-    statusTag.style.fontWeight="800";
-    statusTag.style.marginLeft="auto";
-    
-    b.append(letter,txt,statusTag);
-    
-    if(answered){
-      if(i===correct){
-        b.classList.add("correct");
-        statusTag.textContent=currentLang==="hi"?"✓ सही उत्तर":"✓ Correct";
-        statusTag.style.color="var(--green)";
-      }
-      if(i===selectedAnswer&&selectedAnswer!==correct){
-        b.classList.add("wrong");
-        statusTag.textContent=currentLang==="hi"?"✗ आपका उत्तर":"✗ Your Answer";
-        statusTag.style.color="var(--red)";
-      }
-    }
-    b.onclick=()=>handleAnswer(i,b);
-    container.appendChild(b);
-  });
-  
-  if(answered){
+  if(answered&&fb){
     const f=localized(q.f,currentLang,"");
-    $("factBox").textContent=(currentLang==="hi"?"💡 व्याख्या: ":"💡 Explanation: ")+f;
-    $("factBox").classList.add("show");
+    fb.textContent=(currentLang==="hi"?"💡 व्याख्या: ":"💡 Explanation: ")+f;
+    fb.classList.add("show");
   }
 }
+
 function handleAnswer(idx,btn){
   if(answered) return;
-  // आवाज़ प्ले करें
   playClickSound();
-
   const q=currentQuestions[qIdx]||{};
   answered=true;
   selectedAnswer=idx;
@@ -306,26 +425,58 @@ function handleAnswer(idx,btn){
     }
   }
   
-  const f=localized(q.f,currentLang,"");
-  $("factBox").textContent=(currentLang==="hi"?"💡 व्याख्या: ":"💡 Explanation: ")+f;
-  $("factBox").classList.add("show");
-  $("nextBtn").disabled=false;
-  $("answerHint").textContent=currentLang==="hi"?"उत्तर लॉक हो गया":"Answer locked";
-  $("progressBar").style.width=((qIdx+1)/currentQuestions.length*100)+"%";
+  const fb=$("factBox");
+  if(fb){
+      const f=localized(q.f,currentLang,"");
+      fb.textContent=(currentLang==="hi"?"💡 व्याख्या: ":"💡 Explanation: ")+f;
+      fb.classList.add("show");
+  }
+  const nb=$("nextBtn"); if(nb) nb.disabled=false;
+  const ah=$("answerHint"); if(ah) ah.textContent=currentLang==="hi"?"उत्तर लॉक हो गया":"Answer locked";
+  const pb=$("progressBar"); if(pb) pb.style.width=((qIdx+1)/currentQuestions.length*100)+"%";
 }
+
 function nextQuestion(){if(!answered)return;qIdx++;if(qIdx<currentQuestions.length)renderQuestion();else submitTest()}
 function startTimer(){clearInterval(timerInterval);updateTimer();timerInterval=setInterval(()=>{timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(timerInterval);submitTest(true)}},1000)}
-function updateTimer(){const m=Math.floor(timeLeft/60),s=timeLeft%60;$("timer").textContent="⏱ "+m+":"+(s<10?"0":"")+s;if(timeLeft<=60)$("timer").style.color="var(--red)"}
-async function submitTest(auto=false){if(submitting||!quizStarted)return;submitting=true;quizStarted=false;resultWasAuto=!!auto;clearInterval(timerInterval);const name=$("studentName").value.trim(),district=$("districtSelect").value,total=currentQuestions.length;resultStudentName=name;resultDistrict=district;localStorage.setItem(`nischay_attempt_${currentClass}_${todayKey}`,"true");checkDailyAttempt();$("scoreBadge").textContent=score+" / "+total;$("correctCount").textContent=correctCount;$("wrongCount").textContent=total-correctCount;$("percentCount").textContent=Math.round(score/Math.max(total,1)*100)+"\%";$("resSummary").textContent=`${name} • ${district} • ${currentLang==="en"?"Class":"कक्षा"} ${currentClass}`;$("resHeading").dataset.completed="true";$("resHeading").textContent=auto?(currentLang==="hi"?"⏱ समय पूरा हुआ!":"⏱ Time is up!"):(currentLang==="hi"?"बहुत बढ़िया! टेस्ट पूरा हुआ 🎉":"Great work! Quiz completed 🎉");$("resMsg").dataset.status="sending";renderResultLanguage();switchView("view-result");$("startBtn").disabled=true;
-try{await fetch(GOOGLE_SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify({date:todayKey,studentClass:currentClass,name,district,score,total})});$("resMsg").dataset.status="sent";renderResultLanguage()}catch(e){$("resMsg").dataset.status="error";renderResultLanguage();console.error("Submission request failed",e)}finally{submitting=false;setTimeout(()=>loadLeaderboard(),1800)}}
+function updateTimer(){const m=Math.floor(timeLeft/60),s=timeLeft%60;const tr=$("timer");if(tr){tr.textContent="⏱ "+m+":"+(s<10?"0":"")+s;if(timeLeft<=60)tr.style.color="var(--red)"}}
+
+async function submitTest(auto=false){if(submitting||!quizStarted)return;submitting=true;quizStarted=false;resultWasAuto=!!auto;clearInterval(timerInterval);
+const sn=$("studentName"),ds=$("districtSelect");
+const name=sn?sn.value.trim():"",district=ds?ds.value:"",total=currentQuestions.length;resultStudentName=name;resultDistrict=district;
+safeStorageSet(`nischay_attempt_${currentClass}_${todayKey}`,"true");checkDailyAttempt();
+const scb=$("scoreBadge"); if(scb) scb.textContent=score+" / "+total;
+const cc=$("correctCount"); if(cc) cc.textContent=correctCount;
+const wc=$("wrongCount"); if(wc) wc.textContent=total-correctCount;
+const pc=$("percentCount"); if(pc) pc.textContent=Math.round(score/Math.max(total,1)*100)+"%";
+const rs=$("resSummary"); if(rs) rs.textContent=`${name} • ${district} • ${currentLang==="en"?"Class":"कक्षा"} ${currentClass}`;
+const rh=$("resHeading"); if(rh){rh.dataset.completed="true";rh.textContent=auto?(currentLang==="hi"?"⏱ समय पूरा हुआ!":"⏱ Time is up!"):(currentLang==="hi"?"बहुत बढ़िया! टेस्ट पूरा हुआ 🎉":"Great work! Quiz completed 🎉");}
+const rm=$("resMsg"); if(rm) rm.dataset.status="sending";
+renderResultLanguage();switchView("view-result");
+const sb=$("startBtn"); if(sb) sb.disabled=true;
+try{await fetch(GOOGLE_SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify({date:todayKey,studentClass:currentClass,name,district,score,total})});if(rm)rm.dataset.status="sent";renderResultLanguage()}catch(e){if(rm)rm.dataset.status="error";renderResultLanguage();console.error("Submission request failed",e)}finally{submitting=false;setTimeout(()=>loadLeaderboard(),1800)}}
+
 async function loadLeaderboard(){const tbody=$("lbBody");if(!tbody)return;tbody.innerHTML=`<tr><td colspan="4" class="empty">${currentLang==="hi"?"Google Sheets से लोड हो रहा है…":"Loading from Google Sheets…"}</td></tr>`;try{const data=await fetchSheet();const rows=data.filter(r=>rowClass(r)===normalizeText(currentClass));const map=new Map();rows.forEach(r=>{const name=String(rowValue(r,"name","Name","studentName")||"").trim();if(!name)return;const key=normalizeText(name);const sc=Number(rowValue(r,"score","Score"))||0;const old=map.get(key);if(!old||old.score<sc)map.set(key,{name,district:String(rowValue(r,"district","District")||"-"),score:sc,total:Number(rowValue(r,"total","Total"))||20})});const top=[...map.values()].sort((a,b)=>b.score-a.score).slice(0,10);if(!top.length){tbody.innerHTML=`<tr><td colspan="4" class="empty">${currentLang==="hi"?"अभी कोई सबमिशन नहीं है।":"No submissions yet."}</td></tr>`;return}tbody.replaceChildren();top.forEach((s,i)=>{const tr=document.createElement("tr");const vals=[i+1,s.name,s.district,`${s.score} / ${s.total}`];vals.forEach((v,j)=>{const td=document.createElement("td");if(j===0){const span=document.createElement("span");span.className="rank "+(i<3?"r"+(i+1):"");span.textContent=v;td.append(span)}else{td.textContent=v;if(j===3)td.style.color="var(--cyan)"}tr.append(td)});tbody.append(tr)})}catch(e){tbody.innerHTML=`<tr><td colspan="4" class="empty">${currentLang==="hi"?"Google Sheets से कनेक्शन नहीं हो पाया। Refresh दबाएं।":"Could not connect to Google Sheets. Tap Refresh."}</td></tr>`}}
-function openAdminModal(){$("adminPwdInput").value="";$("adminErrorMsg").classList.add("hidden");$("adminLoginModal").classList.add("open")}
-function closeModal(id){$(id).classList.remove("open")}
-function verifyAdminPassword(){if($("adminPwdInput").value===ADMIN_PASSWORD){closeModal("adminLoginModal");$("adminSelectedClass").textContent=currentClass;$("adminDashModal").classList.add("open")}else $("adminErrorMsg").classList.remove("hidden")}
+
+function openAdminModal(){const ap=$("adminPwdInput"),ae=$("adminErrorMsg"),am=$("adminLoginModal"); if(ap)ap.value=""; if(ae)ae.classList.add("hidden"); if(am)am.classList.add("open");}
+function closeModal(id){const el=$(id); if(el)el.classList.remove("open")}
+function verifyAdminPassword(){const ap=$("adminPwdInput"); if(ap&&ap.value===ADMIN_PASSWORD){closeModal("adminLoginModal");const asc=$("adminSelectedClass");if(asc)asc.textContent=currentClass;const adm=$("adminDashModal");if(adm)adm.classList.add("open")}else{const ae=$("adminErrorMsg");if(ae)ae.classList.remove("hidden")}}
 function fitCanvasText(ctx,text,maxWidth,maxChars=80){let value=Array.from(String(text??"")).slice(0,maxChars).join("");if(ctx.measureText(value).width<=maxWidth)return value;const chars=Array.from(value);while(chars.length>1&&ctx.measureText(chars.join("")+"…").width>maxWidth)chars.pop();return chars.join("")+"…"}
-async function generateTopperPoster(ev){const btn=ev.currentTarget,old=btn.textContent;btn.disabled=true;btn.textContent=currentLang==="hi"?"पोस्टर तैयार हो रहा है…":"Preparing poster…";try{const data=await fetchSheet(),rows=data.filter(r=>rowClass(r)===normalizeText(currentClass)),map=new Map();rows.forEach(r=>{const name=String(rowValue(r,"name","Name","studentName")||"").trim();if(!name)return;const key=normalizeText(name),sc=Number(rowValue(r,"score","Score"))||0,oldRow=map.get(key);if(!oldRow||oldRow.score<sc)map.set(key,{name,district:rowValue(r,"district","District")||"-",score:sc,total:Number(rowValue(r,"total","Total"))||20})});const top=[...map.values()].sort((a,b)=>b.score-a.score).slice(0,10);const c=$("posterCanvas"),ctx=c.getContext("2d");if(!ctx)throw new Error("Canvas unavailable");const fontFallback='system-ui, -apple-system, sans-serif';ctx.textBaseline="alphabetic";const g=ctx.createLinearGradient(0,0,c.width,c.height);g.addColorStop(0,"#07111f");g.addColorStop(.55,"#102d53");g.addColorStop(1,"#075b59");ctx.fillStyle=g;ctx.fillRect(0,0,c.width,c.height);ctx.textAlign="center";ctx.fillStyle="#54ead9";ctx.font=`900 54px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"NISCHAY QUIZ",900,30),540,92);ctx.fillStyle="#fff";ctx.font=`800 34px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"TOP 10 • BSEB MERIT LIST",900,40),540,150);ctx.fillStyle="#b7cbe5";ctx.font=`600 23px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,`CLASS ${currentClass.toUpperCase()} • ${todayKey}`,900,50),540,195);ctx.strokeStyle="#4b8cff";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(70,225);ctx.lineTo(1010,225);ctx.stroke();if(!top.length){ctx.fillStyle="#fff";ctx.font=`26px ${fontFallback}`;ctx.fillText(currentLang==="hi"?"अभी कोई रिकॉर्ड उपलब्ध नहीं है":"No records available yet",540,620)}top.forEach((student,i)=>{const y=270+i*91;ctx.fillStyle=i===0?"#ffd16622":"#ffffff0b";ctx.fillRect(62,y,956,73);ctx.fillStyle=i===0?"#ffd166":i===1?"#dce7f5":i===2?"#f3b58a":"#fff";ctx.textAlign="left";ctx.font=`800 27px ${fontFallback}`;ctx.fillText(`#${i+1}`,85,y+45);ctx.font=`700 25px ${fontFallback}`;const combined=`${student.name} • ${student.district}`;ctx.fillText(fitCanvasText(ctx,combined,690,90),170,y+45);ctx.textAlign="right";ctx.font=`700 25px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,`${student.score} / ${student.total}`,110,18),985,y+45)});ctx.textAlign="center";ctx.fillStyle="#7af2dc";ctx.font=`700 23px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"JOIN OUR OFFICIAL WHATSAPP CHANNEL",900,60),540,1240);ctx.fillStyle="#b7cbe5";ctx.font=`500 18px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"Daily practice • Smart quizzes • Academic growth",900,70),540,1280);const a=document.createElement("a");a.download=`Nischay_Top10_${currentClass}_${todayKey}.png`;a.href=c.toDataURL("image/png");a.click();toast(currentLang==="hi"?"HD पोस्टर डाउनलोड हो गया।":"HD poster downloaded.")}catch(e){console.error(e);toast(currentLang==="hi"?"पोस्टर बनाने में समस्या हुई। Google Sheets कनेक्शन जांचें।":"Could not create poster. Check the Google Sheets connection.")}finally{btn.disabled=false;btn.textContent=old}}
-document.querySelectorAll(".overlay").forEach(o=>o.addEventListener("click",e=>{if(e.target===o)closeModal(o.id)}));$("adminPwdInput").addEventListener("keydown",e=>{if(e.key==="Enter")verifyAdminPassword()});
-applyTheme(localStorage.getItem("nischay_theme")==="light"?"light":"dark");fillDistricts();updateClassLabels();syncWorldTime();loadLeaderboard();
+
+async function generateTopperPoster(ev){const btn=ev.currentTarget,old=btn.textContent;btn.disabled=true;btn.textContent=currentLang==="hi"?"पोस्टर तैयार हो रहा है…":"Preparing poster…";try{const data=await fetchSheet(),rows=data.filter(r=>rowClass(r)===normalizeText(currentClass)),map=new Map();rows.forEach(r=>{const name=String(rowValue(r,"name","Name","studentName")||"").trim();if(!name)return;const key=normalizeText(name),sc=Number(rowValue(r,"score","Score"))||0,oldRow=map.get(key);if(!oldRow||oldRow.score<sc)map.set(key,{name,district:rowValue(r,"district","District")||"-",score:sc,total:Number(rowValue(r,"total","Total"))||20})});const top=[...map.values()].sort((a,b)=>b.score-a.score).slice(0,10);const c=$("posterCanvas");if(!c)throw new Error("Canvas element not found");const ctx=c.getContext("2d");if(!ctx)throw new Error("Canvas unavailable");const fontFallback='system-ui, -apple-system, sans-serif';ctx.textBaseline="alphabetic";const g=ctx.createLinearGradient(0,0,c.width,c.height);g.addColorStop(0,"#07111f");g.addColorStop(.55,"#102d53");g.addColorStop(1,"#075b59");ctx.fillStyle=g;ctx.fillRect(0,0,c.width,c.height);ctx.textAlign="center";ctx.fillStyle="#54ead9";ctx.font=`900 54px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"NISCHAY QUIZ",900,30),540,92);ctx.fillStyle="#fff";ctx.font=`800 34px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"TOP 10 • BSEB MERIT LIST",900,40),540,150);ctx.fillStyle="#b7cbe5";ctx.font=`600 23px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,`CLASS ${currentClass.toUpperCase()} • ${todayKey}`,900,50),540,195);ctx.strokeStyle="#4b8cff";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(70,225);ctx.lineTo(1010,225);ctx.stroke();if(!top.length){ctx.fillStyle="#fff";ctx.font=`26px ${fontFallback}`;ctx.fillText(currentLang==="hi"?"अभी कोई रिकॉर्ड उपलब्ध नहीं है":"No records available yet",540,620)}top.forEach((student,i)=>{const y=270+i*91;ctx.fillStyle=i===0?"#ffd16622":"#ffffff0b";ctx.fillRect(62,y,956,73);ctx.fillStyle=i===0?"#ffd166":i===1?"#dce7f5":i===2?"#f3b58a":"#fff";ctx.textAlign="left";ctx.font=`800 27px ${fontFallback}`;ctx.fillText(`#${i+1}`,85,y+45);ctx.font=`700 25px ${fontFallback}`;const combined=`${student.name} • ${student.district}`;ctx.fillText(fitCanvasText(ctx,combined,690,90),170,y+45);ctx.textAlign="right";ctx.font=`700 25px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,`${student.score} / ${student.total}`,110,18),985,y+45)});ctx.textAlign="center";ctx.fillStyle="#7af2dc";ctx.font=`700 23px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"JOIN OUR OFFICIAL WHATSAPP CHANNEL",900,60),540,1240);ctx.fillStyle="#b7cbe5";ctx.font=`500 18px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"Daily practice • Smart quizzes • Academic growth",900,70),540,1280);const a=document.createElement("a");a.download=`Nischay_Top10_${currentClass}_${todayKey}.png`;a.href=c.toDataURL("image/png");a.click();toast(currentLang==="hi"?"HD पोस्टर डाउनलोड हो गया।":"HD poster downloaded.")}catch(e){console.error(e);toast(currentLang==="hi"?"पोस्टर बनाने में समस्या हुई। Google Sheets कनेक्शन जांचें।":"Could not create poster. Check the Google Sheets connection.")}finally{btn.disabled=false;btn.textContent=old}}
+
+// --- Initialization (Crash-Proof Wrapper) ---
+try {
+    document.querySelectorAll(".overlay").forEach(o=>o.addEventListener("click",e=>{if(e.target===o)closeModal(o.id)}));
+    const ap=$("adminPwdInput");
+    if(ap)ap.addEventListener("keydown",e=>{if(e.key==="Enter")verifyAdminPassword()});
+    applyTheme(safeStorageGet("nischay_theme")==="light"?"light":"dark");
+    fillDistricts();
+    updateClassLabels();
+    syncWorldTime();
+    loadLeaderboard();
+} catch (initErr) {
+    console.error("Initialization error:", initErr);
+}
 </script>
 </body>
 </html>
