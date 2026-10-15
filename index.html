@@ -318,6 +318,8 @@ const sb=$("startBtn");if(sb){sb.disabled=true;sb.textContent=currentLang==="hi"
 try{currentQuestions=await loadSmartQuestions();if(!currentQuestions.length)throw new Error("No questions");if(!confirm(currentLang==="hi"?`कक्षा ${currentClass} का टेस्ट शुरू करें? आपके पास 15 मिनट हैं।`:`Start the ${currentClass} quiz? You have 15 minutes.`)){checkDailyAttempt();return}quizStarted=true;qIdx=0;score=0;correctCount=0;answered=false;selectedAnswer=null;timeLeft=900;submitting=false;switchView("view-quiz");renderQuestion();startTimer()}catch(e){toast(e.message||"प्रश्न लोड नहीं हुए।");console.error(e)}finally{if(!quizStarted)checkDailyAttempt()}}
 
 function renderQuestion(){
+  answered=false;
+  selectedAnswer=null;
   const q=currentQuestions[qIdx]||{};
   const qb=$("qBadge"); if(qb) qb.textContent=(currentLang==="hi"?"प्रश्न ":"Question ")+(qIdx+1)+" / "+currentQuestions.length;
   const pb=$("progressBar"); if(pb) pb.style.width=(qIdx/currentQuestions.length*100)+"%";
@@ -326,8 +328,8 @@ function renderQuestion(){
   const fb=$("factBox");
   if(fb){fb.classList.remove("show");fb.textContent="";}
   const nb=$("nextBtn");
-  if(nb){nb.disabled=!answered;nb.textContent=qIdx===currentQuestions.length-1?(currentLang==="hi"?"टेस्ट सबमिट करें ✓":"Submit test ✓"):(currentLang==="hi"?"अगला प्रश्न →":"Next question →");}
-  const ah=$("answerHint"); if(ah) ah.textContent=answered?(currentLang==="hi"?"उत्तर लॉक हो गया":"Answer locked"):(currentLang==="hi"?"एक विकल्प चुनें":"Choose one option");
+  if(nb){nb.disabled=true;nb.textContent=qIdx===currentQuestions.length-1?(currentLang==="hi"?"टेस्ट सबमिट करें ✓":"Submit test ✓"):(currentLang==="hi"?"अगला प्रश्न →":"Next question →");}
+  const ah=$("answerHint"); if(ah) ah.textContent=currentLang==="hi"?"एक विकल्प चुनें":"Choose one option";
   
   let opts=[];
   if(Array.isArray(q.o)) opts=q.o;
@@ -346,7 +348,6 @@ function renderQuestion(){
         const b=document.createElement("button");
         b.type="button";
         b.className="option";
-        b.disabled=answered;
         
         const letter=document.createElement("span");
         letter.className="letter";
@@ -363,28 +364,9 @@ function renderQuestion(){
         statusTag.style.marginLeft="auto";
         
         b.append(letter,txt,statusTag);
-        
-        if(answered){
-          if(i===correct){
-            b.classList.add("correct");
-            statusTag.textContent=currentLang==="hi"?"✓ सही उत्तर":"✓ Correct";
-            statusTag.style.color="var(--green)";
-          }
-          if(i===selectedAnswer&&selectedAnswer!==correct){
-            b.classList.add("wrong");
-            statusTag.textContent=currentLang==="hi"?"✗ आपका उत्तर":"✗ Your Answer";
-            statusTag.style.color="var(--red)";
-          }
-        }
         b.onclick=()=>handleAnswer(i,b);
         container.appendChild(b);
       });
-  }
-  
-  if(answered&&fb){
-    const f=localized(q.f,currentLang,"");
-    fb.textContent=(currentLang==="hi"?"💡 व्याख्या: ":"💡 Explanation: ")+f;
-    fb.classList.add("show");
   }
 }
 
