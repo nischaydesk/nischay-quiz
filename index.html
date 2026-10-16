@@ -139,6 +139,7 @@ const FALLBACK_QUESTIONS={
 
 let currentLang="hi",currentClass="10th",currentQuestions=[],qIdx=0,score=0,answered=false,selectedAnswer=null,timerInterval=null,timeLeft=900,quizStarted=false,submitting=false,todayKey="",correctCount=0,resultWasAuto=false,resultStudentName="",resultDistrict="";
 let myUid = ""; // स्मार्ट यूनिक ID
+let quizStartTime = 0; // 🌟 स्टॉपवॉच ट्रैकर (टाइम कैलकुलेट करने के लिए) 🌟
 const $=id=>document.getElementById(id);
 
 // --- सुरक्षित स्टोरेज ---
@@ -171,6 +172,23 @@ function playClickSound() {
     osc.start(audioCtx.currentTime);
     osc.stop(audioCtx.currentTime + 0.1);
   } catch (e) {}
+}
+
+// Timezone Bug Fix: Google Sheet के UTC टाइम को वापस भारतीय समय (IST) में बदलना
+function normalizeDate(v){
+    let x=String(v??"").trim();
+    if(!x)return "";
+    if(x.includes("T") && x.endsWith("Z")){
+        try{ return new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date(x)); }catch(e){}
+    }
+    if(/^\d{4}-\d{2}-\d{2}/.test(x))return x.slice(0,10).toLowerCase();
+    const m=x.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})/);
+    if(m){
+        let a=Number(m[1]),b=Number(m[2]),y=m[3];
+        if(a>12)return `${y}-${String(b).padStart(2,"0")}-${String(a).padStart(2,"0")}`;
+        return `${y}-${String(a).padStart(2,"0")}-${String(b).padStart(2,"0")}`
+    }
+    return x.toLocaleLowerCase()
 }
 
 function istDate(){
@@ -240,7 +258,7 @@ function toggleLanguage(){
     set("startSub","जानकारी भरें और आज का टेस्ट दें।","Enter your details and take today's quiz.");
     set("rulesTitle","📌 परीक्षा नियम","📌 Assessment rules");
     const rl=$("rulesList");
-    if(rl) rl.innerHTML=en?'<li>One attempt per class per day in this browser.</li><li>20 questions in 15 minutes; auto-submit at timeout.</li><li>Top 10 shows each matching name’s best score.</li><li>Question sets rotate based on participation dates found in Google Sheets.</li>':'<li>एक डिवाइस पर प्रति कक्षा, प्रतिदिन एक प्रयास।</li><li>20 प्रश्नों के लिए 15 मिनट। समय पूरा होने पर टेस्ट सबमिट होगा।</li><li>टॉप 10 सूची में हर नाम का सर्वश्रेष्ठ स्कोर दिखेगा।</li><li>प्रश्नों का अगला सेट Google Sheet में दर्ज भागीदारी वाले दिनों के अनुसार बदलता है।</li>';
+    if(rl) rl.innerHTML=en?'<li>One attempt per class per day in this browser.</li><li>20 questions in 15 minutes; auto-submit at timeout.</li><li>Top 10 shows each matching name’s best score. Faster completion time ranks higher.</li><li>Question sets rotate based on participation dates found in Google Sheets.</li>':'<li>एक डिवाइस पर प्रति कक्षा, प्रतिदिन एक प्रयास।</li><li>20 प्रश्नों के लिए 15 मिनट। समय पूरा होने पर टेस्ट सबमिट होगा।</li><li>टॉप 10 सूची में हर नाम का सर्वश्रेष्ठ स्कोर दिखेगा। (कम समय लेने वाले को अच्छी रैंक मिलेगी)</li><li>प्रश्नों का अगला सेट Google Sheet में दर्ज भागीदारी वाले दिनों के अनुसार बदलता है।</li>';
     set("nameLabel","विद्यार्थी का पूरा नाम","Student full name");
     const sn=$("studentName"); if(sn) sn.placeholder=en?"e.g. Prince Kumar":"जैसे: प्रिंस कुमार";
     set("districtLabel","अपना ज़िला चुनें","Select your district");
@@ -313,7 +331,6 @@ function checkDailyAttempt(){
 async function fetchSheet(){const r=await fetch(GOOGLE_SCRIPT_URL+"?nocache="+Date.now());if(!r.ok)throw new Error("Sheet read failed");const data=await r.json();if(!Array.isArray(data))throw new Error("Unexpected sheet data");return data}
 function rowValue(row,...keys){if(!row||typeof row!=="object")return "";for(const key of keys){if(row[key]!==undefined&&row[key]!==null&&String(row[key]).trim()!=="")return row[key]}const lookup=new Map(Object.keys(row).map(k=>[k.toLowerCase().replace(/[^a-z0-9]/g,""),k]));for(const key of keys){const actual=lookup.get(key.toLowerCase().replace(/[^a-z0-9]/g,""));if(actual&&row[actual]!==undefined&&row[actual]!==null&&String(row[actual]).trim()!=="")return row[actual]}return ""}
 function normalizeText(v){return String(v??"").trim().toLocaleLowerCase()}
-function normalizeDate(v){let x=String(v??"").trim();if(!x)return "";if(/^\d{4}-\d{2}-\d{2}/.test(x))return x.slice(0,10).toLowerCase();const m=x.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);if(m){let a=Number(m[1]),b=Number(m[2]),y=m[3];if(a>12)return `${y}-${String(b).padStart(2,"0")}-${String(a).padStart(2,"0")}`;return `${y}-${String(a).padStart(2,"0")}-${String(b).padStart(2,"0")}`}return x.toLocaleLowerCase()}
 function rowClass(row){return normalizeText(rowValue(row,"studentClass","class","Class","grade"))}
 function rowDate(row){return normalizeDate(rowValue(row,"date","Date","timestamp","Timestamp"))}
 
@@ -322,7 +339,10 @@ let days=0;try{const rows=await fetchSheet();const dates=new Set(rows.filter(r=>
 
 async function startQuiz(){if(quizStarted||submitting)return;const sn=$("studentName"),ds=$("districtSelect");const name=sn?sn.value.trim():"",district=ds?ds.value:"";if(!name||!district){toast(currentLang==="hi"?"कृपया पूरा नाम और ज़िला भरें।":"Please enter your name and select a district.");return}if(safeStorageGet(`nischay_attempt_${currentClass}_${todayKey}`)){checkDailyAttempt();return}
 const sb=$("startBtn");if(sb){sb.disabled=true;sb.textContent=currentLang==="hi"?"प्रश्न लोड हो रहे हैं…":"Loading questions…";}
-try{currentQuestions=await loadSmartQuestions();if(!currentQuestions.length)throw new Error("No questions");if(!confirm(currentLang==="hi"?`कक्षा ${currentClass} का टेस्ट शुरू करें? आपके पास 15 मिनट हैं।`:`Start the ${currentClass} quiz? You have 15 minutes.`)){checkDailyAttempt();return}quizStarted=true;qIdx=0;score=0;correctCount=0;answered=false;selectedAnswer=null;timeLeft=900;submitting=false;switchView("view-quiz");renderQuestion();startTimer()}catch(e){toast(e.message||"प्रश्न लोड नहीं हुए।");console.error(e)}finally{if(!quizStarted)checkDailyAttempt()}}
+try{currentQuestions=await loadSmartQuestions();if(!currentQuestions.length)throw new Error("No questions");if(!confirm(currentLang==="hi"?`कक्षा ${currentClass} का टेस्ट शुरू करें? आपके पास 15 मिनट हैं।`:`Start the ${currentClass} quiz? You have 15 minutes.`)){checkDailyAttempt();return}
+quizStarted=true;
+quizStartTime=Date.now(); // 🌟 स्टॉपवॉच चालू (Start time recorded) 🌟
+qIdx=0;score=0;correctCount=0;answered=false;selectedAnswer=null;timeLeft=900;submitting=false;switchView("view-quiz");renderQuestion();startTimer()}catch(e){toast(e.message||"प्रश्न लोड नहीं हुए।");console.error(e)}finally{if(!quizStarted)checkDailyAttempt()}}
 
 function renderQuestion(){
   const q=currentQuestions[qIdx]||{};
@@ -349,9 +369,8 @@ function renderQuestion(){
       container.replaceChildren();
       const correct=Number(q.a);
       
-      // 🌟 ऑप्शंस को शफल (Shuffle) करने का स्मार्ट तरीका 🌟
       let optIndices = opts.map((_, i) => i);
-      optIndices.sort(() => Math.random() - 0.5); // रैंडम ऊपर-नीचे
+      optIndices.sort(() => Math.random() - 0.5);
       
       optIndices.forEach((origIdx, renderIdx)=>{
         const optText = opts[origIdx];
@@ -359,11 +378,11 @@ function renderQuestion(){
         b.type="button";
         b.className="option";
         b.disabled=answered;
-        b.dataset.orig = origIdx; // असली इंडेक्स याद रखने के लिए
+        b.dataset.orig = origIdx; 
         
         const letter=document.createElement("span");
         letter.className="letter";
-        letter.textContent=String.fromCharCode(65+renderIdx); // A, B, C, D
+        letter.textContent=String.fromCharCode(65+renderIdx); 
         
         const txt=document.createElement("span");
         txt.style.flex="1";
@@ -428,7 +447,6 @@ function handleAnswer(origIdx,btn){
       statusTag.textContent=currentLang==="hi"?"✗ आपका उत्तर":"✗ Your Answer";
       statusTag.style.color="var(--red)";
     }
-    // सही वाले बटन को ढूंढकर हरा करें
     const correctBtn = buttons.find(b => Number(b.dataset.orig) === correct);
     if(correctBtn){
       correctBtn.classList.add("correct");
@@ -465,6 +483,9 @@ async function submitTest(auto=false){
   if(submitting||!quizStarted)return;
   submitting=true;quizStarted=false;resultWasAuto=!!auto;clearInterval(timerInterval);
   
+  // 🌟 स्टॉपवॉच से टाइम निकालना (कितने सेकंड लगे) 🌟
+  const timeTakenSec = Math.floor((Date.now() - quizStartTime) / 1000);
+  
   const sn=$("studentName"),ds=$("districtSelect");
   const name=sn?sn.value.trim():"",district=ds?ds.value:"",total=currentQuestions.length;
   resultStudentName=name;resultDistrict=district;
@@ -482,7 +503,6 @@ async function submitTest(auto=false){
   renderResultLanguage();switchView("view-result");
   const sb=$("startBtn"); if(sb) sb.disabled=true;
   
-  // 🌟 नाम में छुपी हुई ID (UID) लगाकर भेजना 🌟
   const hiddenName = name + "###" + myUid;
 
   try{
@@ -490,7 +510,8 @@ async function submitTest(auto=false){
       method:"POST",
       mode:"no-cors",
       headers:{"Content-Type":"text/plain;charset=UTF-8"},
-      body:JSON.stringify({date:todayKey,studentClass:currentClass,name:hiddenName,district,score,total})
+      // 🌟 timeTaken भी Google Sheet को भेजा जा रहा है 🌟
+      body:JSON.stringify({date:todayKey,studentClass:currentClass,name:hiddenName,district,score,total,timeTaken:timeTakenSec})
     });
     if(rm)rm.dataset.status="sent";
     renderResultLanguage();
@@ -509,33 +530,33 @@ async function loadLeaderboard(){
   tbody.innerHTML=`<tr><td colspan="4" class="empty">${currentLang==="hi"?"Google Sheets से लोड हो रहा है…":"Loading from Google Sheets…"}</td></tr>`;
   try{
     const data=await fetchSheet();
-    
-    // 🌟 रात 12 बजे वाला जादू: सिर्फ 'आज' (todayKey) का डेटा ही फिल्टर होगा 🌟
     const rows=data.filter(r=>rowClass(r)===normalizeText(currentClass) && rowDate(r)===normalizeDate(todayKey));
-    
     const map=new Map();
+    
     rows.forEach((r, index)=>{
       const rawName=String(rowValue(r,"name","Name","studentName")||"").trim();
       if(!rawName)return;
       
-      // 🌟 छुपी हुई ID (UID) को अलग करना 🌟
       const parts = rawName.split("###");
       const displayName = parts[0];
       const uid = parts.length > 1 ? parts[1] : normalizeText(displayName + "_" + rowValue(r,"district"));
       
-      const key=uid; // अब Key एकदम यूनिक है
+      const key=uid; 
       const sc=Number(rowValue(r,"score","Score"))||0;
-      const old=map.get(key);
+      // 🌟 Google sheet से टाइम पढ़ना (अगर नहीं है तो 9999 मान लेना) 🌟
+      const tt=Number(rowValue(r,"timeTaken","time","duration"))||9999;
       
+      const old=map.get(key);
       if(!old||old.score<sc) {
-        map.set(key,{name:displayName, district:String(rowValue(r,"district","District")||"-"), score:sc, total:Number(rowValue(r,"total","Total"))||20, submitOrder:index});
+        map.set(key,{name:displayName, district:String(rowValue(r,"district","District")||"-"), score:sc, total:Number(rowValue(r,"total","Total"))||20, timeTaken:tt, submitOrder:index});
       }
     });
     
-    // 🌟 रैंक डिसाइड करने का रूल: 1. ज्यादा स्कोर, 2. अगर स्कोर बराबर तो जिसने पहले सबमिट किया 🌟
+    // 🌟 रैंक डिसाइड करने का नया रूल (Time Tie-breaker) 🌟
     const top=[...map.values()].sort((a,b)=>{
-      if(b.score!==a.score) return b.score-a.score;
-      return a.submitOrder-b.submitOrder;
+      if(b.score!==a.score) return b.score-a.score; // 1. जिसका स्कोर ज्यादा, वो ऊपर
+      if(a.timeTaken!==b.timeTaken) return a.timeTaken - b.timeTaken; // 2. अगर स्कोर बराबर, तो कम टाइम वाला ऊपर
+      return a.submitOrder-b.submitOrder; // 3. अगर सब कुछ बराबर, तो जिसने पहले दिया
     }).slice(0,10);
     
     if(!top.length){
@@ -572,11 +593,11 @@ function closeModal(id){const el=$(id); if(el)el.classList.remove("open")}
 function verifyAdminPassword(){const ap=$("adminPwdInput"); if(ap&&ap.value===ADMIN_PASSWORD){closeModal("adminLoginModal");const asc=$("adminSelectedClass");if(asc)asc.textContent=currentClass;const adm=$("adminDashModal");if(adm)adm.classList.add("open")}else{const ae=$("adminErrorMsg");if(ae)ae.classList.remove("hidden")}}
 function fitCanvasText(ctx,text,maxWidth,maxChars=80){let value=Array.from(String(text??"")).slice(0,maxChars).join("");if(ctx.measureText(value).width<=maxWidth)return value;const chars=Array.from(value);while(chars.length>1&&ctx.measureText(chars.join("")+"…").width>maxWidth)chars.pop();return chars.join("")+"…"}
 
-async function generateTopperPoster(ev){const btn=ev.currentTarget,old=btn.textContent;btn.disabled=true;btn.textContent=currentLang==="hi"?"पोस्टर तैयार हो रहा है…":"Preparing poster…";try{const data=await fetchSheet(),rows=data.filter(r=>rowClass(r)===normalizeText(currentClass)&&rowDate(r)===normalizeDate(todayKey)),map=new Map();rows.forEach((r, index)=>{const rawName=String(rowValue(r,"name","Name","studentName")||"").trim();if(!rawName)return;const parts=rawName.split("###"),displayName=parts[0],uid=parts.length>1?parts[1]:normalizeText(displayName+"_"+rowValue(r,"district")),key=uid,sc=Number(rowValue(r,"score","Score"))||0,oldRow=map.get(key);if(!oldRow||oldRow.score<sc)map.set(key,{name:displayName,district:rowValue(r,"district","District")||"-",score:sc,total:Number(rowValue(r,"total","Total"))||20,submitOrder:index})});const top=[...map.values()].sort((a,b)=>{if(b.score!==a.score)return b.score-a.score;return a.submitOrder-b.submitOrder}).slice(0,10);const c=$("posterCanvas");if(!c)throw new Error("Canvas element not found");const ctx=c.getContext("2d");if(!ctx)throw new Error("Canvas unavailable");const fontFallback='system-ui, -apple-system, sans-serif';ctx.textBaseline="alphabetic";const g=ctx.createLinearGradient(0,0,c.width,c.height);g.addColorStop(0,"#07111f");g.addColorStop(.55,"#102d53");g.addColorStop(1,"#075b59");ctx.fillStyle=g;ctx.fillRect(0,0,c.width,c.height);ctx.textAlign="center";ctx.fillStyle="#54ead9";ctx.font=`900 54px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"NISCHAY QUIZ",900,30),540,92);ctx.fillStyle="#fff";ctx.font=`800 34px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"TOP 10 • BSEB MERIT LIST",900,40),540,150);ctx.fillStyle="#b7cbe5";ctx.font=`600 23px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,`CLASS ${currentClass.toUpperCase()} • ${todayKey}`,900,50),540,195);ctx.strokeStyle="#4b8cff";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(70,225);ctx.lineTo(1010,225);ctx.stroke();if(!top.length){ctx.fillStyle="#fff";ctx.font=`26px ${fontFallback}`;ctx.fillText(currentLang==="hi"?"अभी कोई रिकॉर्ड उपलब्ध नहीं है":"No records available yet",540,620)}top.forEach((student,i)=>{const y=270+i*91;ctx.fillStyle=i===0?"#ffd16622":"#ffffff0b";ctx.fillRect(62,y,956,73);ctx.fillStyle=i===0?"#ffd166":i===1?"#dce7f5":i===2?"#f3b58a":"#fff";ctx.textAlign="left";ctx.font=`800 27px ${fontFallback}`;ctx.fillText(`#${i+1}`,85,y+45);ctx.font=`700 25px ${fontFallback}`;const combined=`${student.name} • ${student.district}`;ctx.fillText(fitCanvasText(ctx,combined,690,90),170,y+45);ctx.textAlign="right";ctx.font=`700 25px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,`${student.score} / ${student.total}`,110,18),985,y+45)});ctx.textAlign="center";ctx.fillStyle="#7af2dc";ctx.font=`700 23px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"JOIN OUR OFFICIAL WHATSAPP CHANNEL",900,60),540,1240);ctx.fillStyle="#b7cbe5";ctx.font=`500 18px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"Daily practice • Smart quizzes • Academic growth",900,70),540,1280);const a=document.createElement("a");a.download=`Nischay_Top10_${currentClass}_${todayKey}.png`;a.href=c.toDataURL("image/png");a.click();toast(currentLang==="hi"?"HD पोस्टर डाउनलोड हो गया।":"HD poster downloaded.")}catch(e){console.error(e);toast(currentLang==="hi"?"पोस्टर बनाने में समस्या हुई। Google Sheets कनेक्शन जांचें।":"Could not create poster. Check the Google Sheets connection.")}finally{btn.disabled=false;btn.textContent=old}}
+async function generateTopperPoster(ev){const btn=ev.currentTarget,old=btn.textContent;btn.disabled=true;btn.textContent=currentLang==="hi"?"पोस्टर तैयार हो रहा है…":"Preparing poster…";try{const data=await fetchSheet(),rows=data.filter(r=>rowClass(r)===normalizeText(currentClass)&&rowDate(r)===normalizeDate(todayKey)),map=new Map();rows.forEach((r, index)=>{const rawName=String(rowValue(r,"name","Name","studentName")||"").trim();if(!rawName)return;const parts=rawName.split("###"),displayName=parts[0],uid=parts.length>1?parts[1]:normalizeText(displayName+"_"+rowValue(r,"district")),key=uid,sc=Number(rowValue(r,"score","Score"))||0,tt=Number(rowValue(r,"timeTaken","time","duration"))||9999,oldRow=map.get(key);if(!oldRow||oldRow.score<sc)map.set(key,{name:displayName,district:rowValue(r,"district","District")||"-",score:sc,total:Number(rowValue(r,"total","Total"))||20,timeTaken:tt,submitOrder:index})});const top=[...map.values()].sort((a,b)=>{if(b.score!==a.score)return b.score-a.score;if(a.timeTaken!==b.timeTaken) return a.timeTaken - b.timeTaken;return a.submitOrder-b.submitOrder}).slice(0,10);const c=$("posterCanvas");if(!c)throw new Error("Canvas element not found");const ctx=c.getContext("2d");if(!ctx)throw new Error("Canvas unavailable");const fontFallback='system-ui, -apple-system, sans-serif';ctx.textBaseline="alphabetic";const g=ctx.createLinearGradient(0,0,c.width,c.height);g.addColorStop(0,"#07111f");g.addColorStop(.55,"#102d53");g.addColorStop(1,"#075b59");ctx.fillStyle=g;ctx.fillRect(0,0,c.width,c.height);ctx.textAlign="center";ctx.fillStyle="#54ead9";ctx.font=`900 54px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"NISCHAY QUIZ",900,30),540,92);ctx.fillStyle="#fff";ctx.font=`800 34px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"TOP 10 • BSEB MERIT LIST",900,40),540,150);ctx.fillStyle="#b7cbe5";ctx.font=`600 23px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,`CLASS ${currentClass.toUpperCase()} • ${todayKey}`,900,50),540,195);ctx.strokeStyle="#4b8cff";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(70,225);ctx.lineTo(1010,225);ctx.stroke();if(!top.length){ctx.fillStyle="#fff";ctx.font=`26px ${fontFallback}`;ctx.fillText(currentLang==="hi"?"अभी कोई रिकॉर्ड उपलब्ध नहीं है":"No records available yet",540,620)}top.forEach((student,i)=>{const y=270+i*91;ctx.fillStyle=i===0?"#ffd16622":"#ffffff0b";ctx.fillRect(62,y,956,73);ctx.fillStyle=i===0?"#ffd166":i===1?"#dce7f5":i===2?"#f3b58a":"#fff";ctx.textAlign="left";ctx.font=`800 27px ${fontFallback}`;ctx.fillText(`#${i+1}`,85,y+45);ctx.font=`700 25px ${fontFallback}`;const combined=`${student.name} • ${student.district}`;ctx.fillText(fitCanvasText(ctx,combined,690,90),170,y+45);ctx.textAlign="right";ctx.font=`700 25px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,`${student.score} / ${student.total}`,110,18),985,y+45)});ctx.textAlign="center";ctx.fillStyle="#7af2dc";ctx.font=`700 23px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"JOIN OUR OFFICIAL WHATSAPP CHANNEL",900,60),540,1240);ctx.fillStyle="#b7cbe5";ctx.font=`500 18px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"Daily practice • Smart quizzes • Academic growth",900,70),540,1280);const a=document.createElement("a");a.download=`Nischay_Top10_${currentClass}_${todayKey}.png`;a.href=c.toDataURL("image/png");a.click();toast(currentLang==="hi"?"HD पोस्टर डाउनलोड हो गया।":"HD poster downloaded.")}catch(e){console.error(e);toast(currentLang==="hi"?"पोस्टर बनाने में समस्या हुई। Google Sheets कनेक्शन जांचें।":"Could not create poster. Check the Google Sheets connection.")}finally{btn.disabled=false;btn.textContent=old}}
 
 // --- Initialization ---
 try {
-    initUid(); // यूनिक आईडी जनरेट करना
+    initUid(); 
     document.querySelectorAll(".overlay").forEach(o=>o.addEventListener("click",e=>{if(e.target===o)closeModal(o.id)}));
     const ap=$("adminPwdInput");
     if(ap)ap.addEventListener("keydown",e=>{if(e.key==="Enter")verifyAdminPassword()});
