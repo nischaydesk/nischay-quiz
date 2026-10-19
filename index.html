@@ -4,7 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07111f">
-<title>Nischay Quiz — BSEB Daily Assessment</title>
+<title>Nischay Quiz — BSEB Daily Assessment | NischayDesk</title>
+
+<!-- Unique Favicon for Nischay Quiz (अलग पहचान के लिए) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2246%22 fill=%22%2307111f%22 stroke=%22%23ff6b7d%22 stroke-width=%228%22/><circle cx=%2250%22 cy=%2250%22 r=%2230%22 fill=%22none%22 stroke=%22%234b8cff%22 stroke-width=%228%22/><circle cx=%2250%22 cy=%2250%22 r=%2214%22 fill=%22%23ffd166%22/></svg>">
+
+<!-- SEO Meta Tags -->
+<link rel="canonical" href="https://nischaydesk.github.io/nischay-quiz/" />
+<meta name="author" content="Prince Kumar">
+<meta name="description" content="Nischay Quiz - बिहार बोर्ड कक्षा 10वीं, 11वीं और 12वीं के लिए दैनिक ऑनलाइन टेस्ट व लाइव मेरिट लिस्ट। NischayDesk का आधिकारिक असेसमेंट पोर्टल।">
+<meta name="keywords" content="Nischay Quiz, NischayDesk Quiz, BSEB Daily Quiz, Bihar Board Online Test, Prince Kumar">
+
+<!-- Google Schema (NischayDesk Ecosystem Linking) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Nischay Quiz",
+  "url": "https://nischaydesk.github.io/nischay-quiz/",
+  "applicationCategory": "EducationalApplication",
+  "author": {
+    "@type": "Person",
+    "name": "Prince Kumar"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "NischayDesk",
+    "url": "https://nischaydesk.github.io/"
+  }
+}
+</script>
+
 <style>
 :root{--bg:#07111f;--panel:#0e1b2e;--panel2:#12233a;--text:#f4f8ff;--muted:#9db0c9;--line:#263b57;--blue:#4b8cff;--cyan:#45e4d4;--green:#35d39a;--red:#ff6b7d;--gold:#ffd166;--shadow:0 18px 55px #0005}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 10% -10%,#173c72 0,transparent 36%),radial-gradient(ellipse at 100% 5%,#075b59 0,transparent 26%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;-webkit-tap-highlight-color:transparent}body.light{--bg:#eef4fb;--panel:#fff;--panel2:#f3f7fd;--text:#102039;--muted:#5c6c82;--line:#d9e3f0;--shadow:0 18px 45px #24456b16;background:radial-gradient(ellipse at 0 0,#d7e8ff 0,transparent 34%),var(--bg)}
@@ -40,6 +70,8 @@ body.light .topbar{background:color-mix(in srgb,#f8fbff 90%,transparent)}
 <header class="topbar"><div class="topinner">
   <div class="brand" onclick="switchView('view-home')" aria-label="Nischay Quiz home"><div class="brandmark">🎯</div><div class="brandname">NISCHAY QUIZ<small>BSEB • DAILY CHALLENGE</small></div></div>
   <div class="top-actions">
+    <!-- Direct Link to Main Portal NischayDesk -->
+    <a class="btn small" href="https://nischaydesk.github.io/" style="border-color:var(--cyan);color:var(--cyan)">🏛️ <span class="desktop">NischayDesk</span></a>
     <a class="btn wa small" href="https://whatsapp.com/channel/0029VbDgXJG0lwgytlQMHP0I" target="_blank" rel="noopener"><span class="wa-icon" aria-hidden="true">☎</span><span class="wa-label" id="waText">WhatsApp चैनल</span><span class="wa-arrow" aria-hidden="true">↗</span></a>
     <button class="btn small" onclick="toggleLanguage()" id="langBtn">EN</button>
     <button class="btn small" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle theme">☀️</button>
@@ -57,13 +89,13 @@ body.light .topbar{background:color-mix(in srgb,#f8fbff 90%,transparent)}
   <div class="grid">
     <div class="card" id="quizForm">
       <div class="cardhead"><div><h2 id="startHeading">🚀 अपना टेस्ट शुरू करें</h2><p class="sub" id="startSub">जानकारी भरें और आज का टेस्ट दें।</p></div><span class="pill">● LIVE PORTAL</span></div>
-      <div class="rules"><strong id="rulesTitle">📌 परीक्षा के नियम</strong><ul id="rulesList"><li>एक डिवाइस पर प्रति कक्षा, प्रतिदिन एक प्रयास।</li><li>20 प्रश्नों के लिए 15 मिनट। समय पूरा होने पर टेस्ट सबमिट होगा।</li><li>टॉप 10 सूची में हर नाम का सर्वश्रेष्ठ स्कोर दिखेगा।</li><li>प्रश्नों का अगला सेट Google Sheet में दर्ज भागीदारी वाले दिनों के अनुसार बदलता है।</li></ul></div>
-      <div id="attemptNotice" class="notice">आप आज इस कक्षा का टेस्ट दे चुके हैं।</div>
+      <div class="rules"><strong id="rulesTitle">📌 परीक्षा के नियम</strong><ul id="rulesList"><li>प्रतिदिन प्रति कक्षा केवल 1 बार टेस्ट दे सकते हैं (Incognito मोड में भी दुबारा अनुमति नहीं है)।</li><li>20 प्रश्नों के लिए 15 मिनट। समय पूरा होने पर टेस्ट स्वतः सबमिट होगा।</li><li>टॉप 10 सूची में कम समय में अधिक अंक लाने वाले को बेहतर रैंक मिलेगी।</li><li>प्रश्नों का अगला सेट दैनिक आधार पर रोटेट होता है।</li></ul></div>
+      <div id="attemptNotice" class="notice">⚠️ आप आज इस कक्षा का टेस्ट दे चुके हैं। कल फिर आएं।</div>
       <div class="tabs"><button class="tab active" id="tab10" onclick="selectClass('10th')">कक्षा 10वीं</button><button class="tab" id="tab11" onclick="selectClass('11th')">कक्षा 11वीं</button><button class="tab" id="tab12" onclick="selectClass('12th')">कक्षा 12वीं</button></div>
       <div class="field"><label id="nameLabel" for="studentName">विद्यार्थी का पूरा नाम</label><input id="studentName" class="input" maxlength="80" autocomplete="name" placeholder="जैसे: प्रिंस कुमार"></div>
       <div class="field"><label id="districtLabel" for="districtSelect">अपना ज़िला चुनें</label><select id="districtSelect" class="input"><option value="">-- अपना ज़िला चुनें --</option></select></div>
       <button class="btn primary full" id="startBtn" onclick="startQuiz()">आज का टेस्ट शुरू करें →</button>
-      <p class="sub" id="dataHint" style="margin-top:12px">आपका नाम, ज़िला, कक्षा और स्कोर मेरिट लिस्ट के लिए Google Sheets पर भेजे जाते हैं।</p>
+      <p class="sub" id="dataHint" style="margin-top:12px">आपका नाम, ज़िला, कक्षा और स्कोर मेरिट लिस्ट के लिए Google Sheets पर सुरक्षित भेजे जाते हैं।</p>
     </div>
     <div class="card">
       <div class="cardhead"><div><h2 id="lbTitle">🏆 लाइव टॉप 10</h2><p class="sub" id="lbSub">कक्षा <span id="lbClass">10th</span> • सर्वश्रेष्ठ स्कोर</p></div><button class="btn small" onclick="loadLeaderboard()" id="refreshBtn">↻ Refresh</button></div>
@@ -93,26 +125,17 @@ body.light .topbar{background:color-mix(in srgb,#f8fbff 90%,transparent)}
 <section id="view-policy" class="view"><div class="card document">
   <button class="btn small" onclick="switchView('view-home')" id="backBtn">← होम पर वापस</button>
   <div id="policyHi">
-  <h1>गोपनीयता नीति एवं सेवा की शर्तें</h1><p><b>प्रभावी तिथि:</b> 15 अक्टूबर 2026 • <b>संचालक:</b> Nischay Quiz Portal</p>
-  <h2>1. उद्देश्य</h2><p>Nischay Quiz बिहार बोर्ड की तैयारी कर रहे कक्षा 10वीं, 11वीं और 12वीं के विद्यार्थियों के लिए स्वतंत्र, निःशुल्क दैनिक स्व-मूल्यांकन मंच है। यह BSEB का आधिकारिक पोर्टल नहीं है।</p>
-  <h2>2. कौन-सा डेटा लिया जाता है?</h2><ul><li>विद्यार्थी का दर्ज किया गया नाम।</li><li>ज़िला और चुनी गई कक्षा।</li><li>क्विज़ स्कोर, कुल प्रश्न और सबमिशन की तारीख।</li><li>इस ब्राउज़र में दैनिक प्रयास रोकने के लिए Local Storage रिकॉर्ड।</li></ul><p>वेबसाइट आधार नंबर, बैंक विवरण या पासवर्ड नहीं मांगती। सार्वजनिक मेरिट सूची में नाम और ज़िला दिखाई दे सकते हैं।</p>
-  <h2>3. डेटा का उपयोग</h2><p>डेटा का उपयोग कक्षा-वार मेरिट सूची, दैनिक टॉपर पोस्टर और प्रश्न-सेट रोटेशन के लिए किया जाता है। वेबसाइट द्वारा डेटा बेचने का इरादा नहीं है। डेटा Google Apps Script और Google Sheets के कॉन्फ़िगर किए गए बैकएंड को भेजा जाता है।</p>
-  <h2>4. परीक्षा नियम</h2><ul><li>एक ब्राउज़र में प्रति कक्षा प्रतिदिन एक प्रयास लागू करने की कोशिश की जाती है। यह स्थानीय स्टोरेज आधारित रोक है, पूर्ण सर्वर-स्तरीय पहचान सत्यापन नहीं।</li><li>टेस्ट की समय सीमा 15 मिनट है; समय पूरा होने पर उपलब्ध उत्तर सबमिट होते हैं।</li><li>लीडरबोर्ड समान नामों को एक रिकॉर्ड में समेटकर सर्वश्रेष्ठ स्कोर दिखाता है। समान नाम वाले अलग विद्यार्थी आपस में मिल सकते हैं।</li></ul>
-  <h2>5. प्रश्न बैंक एवं बाहरी लिंक</h2><p>प्रश्न बैंक और वेबसाइट सामग्री का उपयोग शैक्षणिक अभ्यास के लिए है। WhatsApp चैनल से जुड़ना स्वैच्छिक है और उस सेवा की अपनी शर्तें लागू होंगी।</p>
-  <h2>6. संपर्क एवं बदलाव</h2><p>नीति में बदलाव किया जा सकता है। सवाल, स्कोर या गोपनीयता संबंधी प्रश्नों के लिए आधिकारिक WhatsApp चैनल से संपर्क करें।</p>
+  <h1>गोपनीयता नीति एवं सेवा की शर्तें</h1><p><b>प्रभावी तिथि:</b> 15 अक्टूबर 2026 • <b>संचालक:</b> Nischay Quiz Portal (NischayDesk)</p>
+  <h2>1. उद्देश्य</h2><p>Nischay Quiz बिहार बोर्ड की तैयारी कर रहे कक्षा 10वीं, 11वीं और 12वीं के विद्यार्थियों के लिए स्वतंत्र, निःशुल्क दैनिक स्व-मूल्यांकन मंच है।</p>
+  <h2>2. कौन-सा डेटा लिया जाता है?</h2><ul><li>विद्यार्थी का दर्ज किया गया नाम।</li><li>ज़िला और चुनी गई कक्षा।</li><li>क्विज़ स्कोर, कुल प्रश्न और सबमिशन की तारीख।</li><li>अनुचित दुबारा प्रयास रोकने के लिए स्थानीय स्टोरेज व डिवाइस फ़िंगरप्रिंट रिकॉर्ड।</li></ul>
   </div>
   <div id="policyEn" class="hidden">
-  <h1>Privacy Policy & Terms of Service</h1><p><b>Effective date:</b> October 15, 2026 • <b>Operator:</b> Nischay Quiz Portal</p>
-  <h2>1. Purpose</h2><p>Nischay Quiz is an independent, free daily self-assessment platform for students preparing for Bihar Board classes 10, 11 and 12. It is not an official BSEB website.</p>
-  <h2>2. Information collected</h2><ul><li>Student name entered by the student.</li><li>District and selected class.</li><li>Quiz score, total questions and submission date.</li><li>Local Storage data used to limit attempts in this browser.</li></ul><p>The site does not ask for Aadhaar, bank details or passwords. Names and districts may appear on the public leaderboard.</p>
-  <h2>3. Use of data</h2><p>Data is used for class-wise rankings, topper posters and question-set rotation. The configured Google Apps Script and Google Sheets backend receives submissions.</p>
-  <h2>4. Assessment rules</h2><ul><li>The one-attempt-per-day restriction is browser-local and is not robust server-side identity verification.</li><li>The quiz timer is 15 minutes; available answers are submitted when time expires.</li><li>The leaderboard groups matching names and displays the best score, so students with identical names may be merged.</li></ul>
-  <h2>5. Question bank and external links</h2><p>Questions and site materials are provided for educational practice. Joining the WhatsApp channel is optional and subject to WhatsApp's terms.</p>
-  <h2>6. Contact and changes</h2><p>This policy may be updated. Contact the portal through the official WhatsApp channel for questions about scores, content or privacy.</p>
+  <h1>Privacy Policy & Terms of Service</h1><p><b>Effective date:</b> October 15, 2026 • <b>Operator:</b> Nischay Quiz Portal (NischayDesk)</p>
+  <h2>1. Purpose</h2><p>Nischay Quiz is an independent, free daily self-assessment platform for students preparing for Bihar Board classes 10, 11 and 12.</p>
   </div>
 </div></section>
 </main>
-<footer class="footer"><strong>Nischay Quiz Foundation</strong> • Bihar Board Learning Companion<br>© 2026 Nischay Quiz • Built for daily learning
+<footer class="footer"><strong>Nischay Quiz Foundation</strong> • Part of <a href="https://nischaydesk.github.io/" style="color:var(--cyan);text-decoration:none;">NischayDesk Ecosystem</a><br>© 2026 Nischay Quiz • Built for daily learning
 <div class="footerlinks"><button class="linkbtn" onclick="switchView('view-policy')" id="policyLink">गोपनीयता नीति एवं शर्तें</button><button class="linkbtn" onclick="openAdminModal()">🔒 Admin Poster</button></div></footer>
 <div class="overlay" id="adminLoginModal" role="dialog" aria-modal="true" aria-labelledby="adminTitle"><div class="modal"><h2 id="adminTitle">🔒 Admin Authentication</h2><p class="sub" style="margin-bottom:17px">केवल एडमिन के लिए। पासवर्ड दर्ज करें।</p><input id="adminPwdInput" type="password" class="input" placeholder="Admin password" style="margin-bottom:12px"><p id="adminErrorMsg" class="hidden" style="color:var(--red);font-weight:750;font-size:13px">गलत पासवर्ड।</p><button class="btn primary full" onclick="verifyAdminPassword()">लॉगिन करें →</button><button class="btn full" onclick="closeModal('adminLoginModal')" style="margin-top:8px">रद्द करें</button></div></div>
 <div class="overlay" id="adminDashModal" role="dialog" aria-modal="true"><div class="modal"><h2>👑 Top 10 Poster</h2><p class="sub" style="margin-bottom:16px">चुनी गई कक्षा: <b id="adminSelectedClass">10th</b></p><canvas id="posterCanvas" width="1080" height="1350" class="hidden"></canvas><button class="btn green full" onclick="generateTopperPoster(event)">📸 HD पोस्टर डाउनलोड करें (.png)</button><button class="btn full" onclick="closeModal('adminDashModal')" style="margin-top:9px">बंद करें</button></div></div>
@@ -123,7 +146,6 @@ const GOOGLE_SCRIPT_URL="https://script.google.com/macros/s/AKfycbzsigV1wqX5pnlP
 const ADMIN_PASSWORD="Prince@2028";
 const DISTRICTS=["अररिया","अरवल","औरंगाबाद","बांका","बेगूसराय","भागलपुर","भोजपुर","बक्सर","दरभंगा","पूर्वी चंपारण","गया","गोपालगंज","जमुई","जहानाबाद","कैमूर","कटिहार","खगड़िया","किशनगंज","लखीसराय","मधेपुरा","मधुबनी","मुंगेर","मुजफ्फरपुर","नालंदा","नवादा","पटना","पूर्णिया","रोहतास","सहरसा","समस्तीपुर","सारण","शेखपुरा","शिवहर","सीतामढ़ी","सीवान","सुपौल","वैशाली","पश्चिमी चंपारण"];
 
-// Fallback questions if JSON fails
 const FALLBACK_QUESTIONS={
 "10th":[
 {q:{hi:"कमरे के ताप पर द्रव अवस्था में रहने वाली एकमात्र अधातु कौन-सी है?",en:"Which non-metal is liquid at room temperature?"},o:{hi:["पारा","ब्रोमीन","आयोडीन","क्लोरीन"],en:["Mercury","Bromine","Iodine","Chlorine"]},a:1,f:{hi:"ब्रोमीन द्रव अधातु है, जबकि पारा द्रव धातु है।",en:"Bromine is a liquid non-metal; mercury is a liquid metal."}},
@@ -138,19 +160,32 @@ const FALLBACK_QUESTIONS={
 };
 
 let currentLang="hi",currentClass="10th",currentQuestions=[],qIdx=0,score=0,answered=false,selectedAnswer=null,timerInterval=null,timeLeft=900,quizStarted=false,submitting=false,todayKey="",correctCount=0,resultWasAuto=false,resultStudentName="",resultDistrict="";
-let myUid = ""; // स्मार्ट यूनिक ID
-let quizStartTime = 0; // 🌟 स्टॉपवॉच ट्रैकर (टाइम कैलकुलेट करने के लिए) 🌟
+let myUid = "";
+let deviceFingerprint = ""; 
+let quizStartTime = 0;
 const $=id=>document.getElementById(id);
 
-// --- सुरक्षित स्टोरेज ---
 function safeStorageGet(k){ try{return localStorage.getItem(k)}catch(e){return null} }
 function safeStorageSet(k,v){ try{localStorage.setItem(k,v)}catch(e){} }
 
-// --- स्मार्ट यूनिक ID जनरेटर ---
+// 🛡️ डिवाइस फ़िंगरप्रिंट (स्क्रीन, GPU, भाषा और हार्डवेयर का अनोखा कोड - जो Incognito में भी समान रहता है)
+function generateFingerprint() {
+    const nav = window.navigator;
+    const screen = window.screen;
+    let fp = (nav.userAgent || '') + (screen.height || '') + (screen.width || '') + (screen.colorDepth || '') + (nav.language || '') + (new Date().getTimezoneOffset());
+    let hash = 0;
+    for (let i = 0; i < fp.length; i++) {
+        hash = ((hash << 5) - hash) + fp.charCodeAt(i);
+        hash |= 0;
+    }
+    return "dev_" + Math.abs(hash).toString(36);
+}
+
 function initUid() {
+    deviceFingerprint = generateFingerprint();
     myUid = safeStorageGet("nischay_uid");
     if (!myUid) {
-        myUid = "u" + Date.now().toString(36) + Math.random().toString(36).substr(2, 4);
+        myUid = deviceFingerprint;
         safeStorageSet("nischay_uid", myUid);
     }
 }
@@ -174,7 +209,6 @@ function playClickSound() {
   } catch (e) {}
 }
 
-// Timezone Bug Fix: Google Sheet के UTC टाइम को वापस भारतीय समय (IST) में बदलना
 function normalizeDate(v){
     let x=String(v??"").trim();
     if(!x)return "";
@@ -258,14 +292,14 @@ function toggleLanguage(){
     set("startSub","जानकारी भरें और आज का टेस्ट दें।","Enter your details and take today's quiz.");
     set("rulesTitle","📌 परीक्षा नियम","📌 Assessment rules");
     const rl=$("rulesList");
-    if(rl) rl.innerHTML=en?'<li>One attempt per class per day in this browser.</li><li>20 questions in 15 minutes; auto-submit at timeout.</li><li>Top 10 shows each matching name’s best score. Faster completion time ranks higher.</li><li>Question sets rotate based on participation dates found in Google Sheets.</li>':'<li>एक डिवाइस पर प्रति कक्षा, प्रतिदिन एक प्रयास।</li><li>20 प्रश्नों के लिए 15 मिनट। समय पूरा होने पर टेस्ट सबमिट होगा।</li><li>टॉप 10 सूची में हर नाम का सर्वश्रेष्ठ स्कोर दिखेगा। (कम समय लेने वाले को अच्छी रैंक मिलेगी)</li><li>प्रश्नों का अगला सेट Google Sheet में दर्ज भागीदारी वाले दिनों के अनुसार बदलता है।</li>';
+    if(rl) rl.innerHTML=en?'<li>Only one attempt per class per day (Incognito bypass strictly blocked).</li><li>20 questions in 15 minutes; auto-submit at timeout.</li><li>Top 10 ranks best scores with faster completion time tie-breaker.</li><li>Question sets rotate daily based on participation records.</li>':'<li>प्रतिदिन प्रति कक्षा केवल 1 बार टेस्ट दे सकते हैं (Incognito मोड में भी दुबारा अनुमति नहीं है)।</li><li>20 प्रश्नों के लिए 15 मिनट। समय पूरा होने पर टेस्ट स्वतः सबमिट होगा।</li><li>टॉप 10 सूची में कम समय में अधिक अंक लाने वाले को बेहतर रैंक मिलेगी।</li><li>प्रश्नों का अगला सेट दैनिक आधार पर रोटेट होता है।</li>';
     set("nameLabel","विद्यार्थी का पूरा नाम","Student full name");
     const sn=$("studentName"); if(sn) sn.placeholder=en?"e.g. Prince Kumar":"जैसे: प्रिंस कुमार";
     set("districtLabel","अपना ज़िला चुनें","Select your district");
     const dSel=$("districtSelect");
     if(dSel&&dSel.options[0])dSel.options[0].textContent=en?"-- Select your district --":"-- अपना ज़िला चुनें --";
     set("startBtn","आज का टेस्ट शुरू करें →","Start today's quiz →");
-    set("dataHint","आपका नाम, ज़िला, कक्षा और स्कोर मेरिट लिस्ट के लिए Google Sheets पर भेजे जाते हैं।","Your name, district, class and score are sent to Google Sheets for the merit list.");
+    set("dataHint","आपका नाम, ज़िला, कक्षा और स्कोर मेरिट लिस्ट के लिए Google Sheets पर सुरक्षित भेजे जाते हैं।","Your name, district, class and score are sent to Google Sheets for the merit list.");
     set("lbTitle","🏆 लाइव टॉप 10","🏆 Live Top 10");
     set("refreshBtn","↻ Refresh","↻ Refresh");
     set("thRank","रैंक","Rank");
@@ -319,7 +353,7 @@ function checkDailyAttempt(){
     const an=$("attemptNotice");
     if(an){
         an.classList.toggle("show",!!attempted);
-        an.textContent=currentLang==="hi"?"⚠️ आप आज इस कक्षा का टेस्ट इस ब्राउज़र पर दे चुके हैं। कल फिर आएं।":"⚠️ Today's quiz for this class has already been completed in this browser.";
+        an.textContent=currentLang==="hi"?"⚠️ आप आज इस कक्षा का टेस्ट दे चुके हैं। कल फिर आएं।":"⚠️ Today's quiz for this class has already been completed in this browser.";
     }
     const sb=$("startBtn");
     if(sb){
@@ -337,12 +371,81 @@ function rowDate(row){return normalizeDate(rowValue(row,"date","Date","timestamp
 async function loadSmartQuestions(){let pool=[];try{const r=await fetch("./questions.json?v="+encodeURIComponent(todayKey));if(r.ok){const d=await r.json();if(Array.isArray(d))pool=d;else if(d&&typeof d==="object"){const cls=Object.keys(d).find(k=>normalizeText(k)===normalizeText(currentClass));if(cls&&Array.isArray(d[cls]))pool=d[cls]}}}catch(e){}if(!pool.length)pool=FALLBACK_QUESTIONS[currentClass]||[];pool=pool.filter(q=>q&&typeof q==="object");if(!pool.length)throw new Error(currentLang==="hi"?"इस कक्षा के लिए प्रश्न उपलब्ध नहीं हैं।":"No questions are available for this class.");
 let days=0;try{const rows=await fetchSheet();const dates=new Set(rows.filter(r=>rowClass(r)===normalizeText(currentClass)).map(rowDate).filter(d=>d&&d!==normalizeDate(todayKey)));days=dates.size}catch(e){}const start=(days*20)%pool.length;let selected=[];for(let i=0;i<Math.min(20,pool.length);i++)selected.push(pool[(start+i)%pool.length]);return selected}
 
-async function startQuiz(){if(quizStarted||submitting)return;const sn=$("studentName"),ds=$("districtSelect");const name=sn?sn.value.trim():"",district=ds?ds.value:"";if(!name||!district){toast(currentLang==="hi"?"कृपया पूरा नाम और ज़िला भरें।":"Please enter your name and select a district.");return}if(safeStorageGet(`nischay_attempt_${currentClass}_${todayKey}`)){checkDailyAttempt();return}
-const sb=$("startBtn");if(sb){sb.disabled=true;sb.textContent=currentLang==="hi"?"प्रश्न लोड हो रहे हैं…":"Loading questions…";}
-try{currentQuestions=await loadSmartQuestions();if(!currentQuestions.length)throw new Error("No questions");if(!confirm(currentLang==="hi"?`कक्षा ${currentClass} का टेस्ट शुरू करें? आपके पास 15 मिनट हैं।`:`Start the ${currentClass} quiz? You have 15 minutes.`)){checkDailyAttempt();return}
-quizStarted=true;
-quizStartTime=Date.now(); // 🌟 स्टॉपवॉच चालू (Start time recorded) 🌟
-qIdx=0;score=0;correctCount=0;answered=false;selectedAnswer=null;timeLeft=900;submitting=false;switchView("view-quiz");renderQuestion();startTimer()}catch(e){toast(e.message||"प्रश्न लोड नहीं हुए।");console.error(e)}finally{if(!quizStarted)checkDailyAttempt()}}
+// 🛡️ ANTI-CHEAT CHECK: इनकॉग्निटो या दूसरे विंडो से दोबारा टेस्ट रोकने की लाइव चेकिंग
+async function startQuiz(){
+  if(quizStarted||submitting)return;
+  const sn=$("studentName"),ds=$("districtSelect");
+  const name=sn?sn.value.trim():"",district=ds?ds.value:"";
+  
+  if(!name||!district){
+    toast(currentLang==="hi"?"कृपया पूरा नाम और ज़िला भरें।":"Please enter your name and select a district.");
+    return;
+  }
+  
+  // 1. लोकल स्टोरेज चेक
+  if(safeStorageGet(`nischay_attempt_${currentClass}_${todayKey}`)){
+    checkDailyAttempt();
+    return;
+  }
+
+  const sb=$("startBtn");
+  if(sb){sb.disabled=true;sb.textContent=currentLang==="hi"?"जाँच व प्रश्न लोड हो रहे हैं…":"Verifying & loading…";}
+
+  try{
+    // 2. Google Sheet से लाइव क्रॉस-वेरिफ़िकेशन (चाहे इनकॉग्निटो मोड हो या प्राइवेट ब्राउज़र)
+    const rows = await fetchSheet();
+    const todayNorm = normalizeDate(todayKey);
+    const classNorm = normalizeText(currentClass);
+    const targetNameNorm = normalizeText(name);
+    const targetDistNorm = normalizeText(district);
+
+    const alreadySubmittedToday = rows.some(r => {
+      if (rowClass(r) !== classNorm || rowDate(r) !== todayNorm) return false;
+      const rawName = String(rowValue(r, "name", "Name", "studentName") || "").trim();
+      const parts = rawName.split("###");
+      const savedName = normalizeText(parts[0]);
+      const savedUid = parts.length > 1 ? parts[1] : "";
+      const savedDist = normalizeText(rowValue(r, "district", "District"));
+
+      // अगर उसी नाम+ज़िले से या उसी डिवाइस फ़िंगरप्रिंट से आज सबमिट हो चुका है
+      if (savedUid === deviceFingerprint || (savedName === targetNameNorm && savedDist === targetDistNorm)) {
+        return true;
+      }
+      return false;
+    });
+
+    if(alreadySubmittedToday){
+      safeStorageSet(`nischay_attempt_${currentClass}_${todayKey}`, "true");
+      checkDailyAttempt();
+      alert(currentLang==="hi"?
+        "⚠️ आप आज इस कक्षा का टेस्ट पहले ही दे चुके हैं!\nगुप्त मोड (Incognito) या अलग विंडो से दोबारा टेस्ट की अनुमति नहीं है।" :
+        "⚠️ You have already completed today's quiz for this class!\nMultiple attempts via Incognito mode are strictly prohibited."
+      );
+      return;
+    }
+
+    currentQuestions = await loadSmartQuestions();
+    if(!currentQuestions.length) throw new Error("No questions available");
+
+    if(!confirm(currentLang==="hi"?`कक्षा ${currentClass} का टेस्ट शुरू करें? आपके पास 15 मिनट हैं।`:`Start the ${currentClass} quiz? You have 15 minutes.`)){
+      checkDailyAttempt();
+      return;
+    }
+
+    quizStarted=true;
+    quizStartTime=Date.now();
+    qIdx=0;score=0;correctCount=0;answered=false;selectedAnswer=null;timeLeft=900;submitting=false;
+    switchView("view-quiz");
+    renderQuestion();
+    startTimer();
+
+  }catch(e){
+    toast(e.message||"प्रश्न लोड नहीं हुए।");
+    console.error(e);
+  }finally{
+    if(!quizStarted) checkDailyAttempt();
+  }
+}
 
 function renderQuestion(){
   const q=currentQuestions[qIdx]||{};
@@ -483,14 +586,13 @@ async function submitTest(auto=false){
   if(submitting||!quizStarted)return;
   submitting=true;quizStarted=false;resultWasAuto=!!auto;clearInterval(timerInterval);
   
-  // 🌟 स्टॉपवॉच से टाइम निकालना (कितने सेकंड लगे) 🌟
   const timeTakenSec = Math.floor((Date.now() - quizStartTime) / 1000);
-  
   const sn=$("studentName"),ds=$("districtSelect");
   const name=sn?sn.value.trim():"",district=ds?ds.value:"",total=currentQuestions.length;
   resultStudentName=name;resultDistrict=district;
   
-  safeStorageSet(`nischay_attempt_${currentClass}_${todayKey}`,"true");checkDailyAttempt();
+  safeStorageSet(`nischay_attempt_${currentClass}_${todayKey}`,"true");
+  checkDailyAttempt();
   
   const scb=$("scoreBadge"); if(scb) scb.textContent=score+" / "+total;
   const cc=$("correctCount"); if(cc) cc.textContent=correctCount;
@@ -503,14 +605,14 @@ async function submitTest(auto=false){
   renderResultLanguage();switchView("view-result");
   const sb=$("startBtn"); if(sb) sb.disabled=true;
   
-  const hiddenName = name + "###" + myUid;
+  // 🛡️ डिवाइस फ़िंगरप्रिंट साथ में भेजा जा रहा है ताकि इनकॉग्निटो वाले भी पकड़े जाएँ
+  const hiddenName = name + "###" + deviceFingerprint;
 
   try{
     await fetch(GOOGLE_SCRIPT_URL,{
       method:"POST",
       mode:"no-cors",
       headers:{"Content-Type":"text/plain;charset=UTF-8"},
-      // 🌟 timeTaken भी Google Sheet को भेजा जा रहा है 🌟
       body:JSON.stringify({date:todayKey,studentClass:currentClass,name:hiddenName,district,score,total,timeTaken:timeTakenSec})
     });
     if(rm)rm.dataset.status="sent";
@@ -543,7 +645,6 @@ async function loadLeaderboard(){
       
       const key=uid; 
       const sc=Number(rowValue(r,"score","Score"))||0;
-      // 🌟 Google sheet से टाइम पढ़ना (अगर नहीं है तो 9999 मान लेना) 🌟
       const tt=Number(rowValue(r,"timeTaken","time","duration"))||9999;
       
       const old=map.get(key);
@@ -552,11 +653,10 @@ async function loadLeaderboard(){
       }
     });
     
-    // 🌟 रैंक डिसाइड करने का नया रूल (Time Tie-breaker) 🌟
     const top=[...map.values()].sort((a,b)=>{
-      if(b.score!==a.score) return b.score-a.score; // 1. जिसका स्कोर ज्यादा, वो ऊपर
-      if(a.timeTaken!==b.timeTaken) return a.timeTaken - b.timeTaken; // 2. अगर स्कोर बराबर, तो कम टाइम वाला ऊपर
-      return a.submitOrder-b.submitOrder; // 3. अगर सब कुछ बराबर, तो जिसने पहले दिया
+      if(b.score!==a.score) return b.score-a.score;
+      if(a.timeTaken!==b.timeTaken) return a.timeTaken - b.timeTaken;
+      return a.submitOrder-b.submitOrder;
     }).slice(0,10);
     
     if(!top.length){
@@ -595,7 +695,6 @@ function fitCanvasText(ctx,text,maxWidth,maxChars=80){let value=Array.from(Strin
 
 async function generateTopperPoster(ev){const btn=ev.currentTarget,old=btn.textContent;btn.disabled=true;btn.textContent=currentLang==="hi"?"पोस्टर तैयार हो रहा है…":"Preparing poster…";try{const data=await fetchSheet(),rows=data.filter(r=>rowClass(r)===normalizeText(currentClass)&&rowDate(r)===normalizeDate(todayKey)),map=new Map();rows.forEach((r, index)=>{const rawName=String(rowValue(r,"name","Name","studentName")||"").trim();if(!rawName)return;const parts=rawName.split("###"),displayName=parts[0],uid=parts.length>1?parts[1]:normalizeText(displayName+"_"+rowValue(r,"district")),key=uid,sc=Number(rowValue(r,"score","Score"))||0,tt=Number(rowValue(r,"timeTaken","time","duration"))||9999,oldRow=map.get(key);if(!oldRow||oldRow.score<sc)map.set(key,{name:displayName,district:rowValue(r,"district","District")||"-",score:sc,total:Number(rowValue(r,"total","Total"))||20,timeTaken:tt,submitOrder:index})});const top=[...map.values()].sort((a,b)=>{if(b.score!==a.score)return b.score-a.score;if(a.timeTaken!==b.timeTaken) return a.timeTaken - b.timeTaken;return a.submitOrder-b.submitOrder}).slice(0,10);const c=$("posterCanvas");if(!c)throw new Error("Canvas element not found");const ctx=c.getContext("2d");if(!ctx)throw new Error("Canvas unavailable");const fontFallback='system-ui, -apple-system, sans-serif';ctx.textBaseline="alphabetic";const g=ctx.createLinearGradient(0,0,c.width,c.height);g.addColorStop(0,"#07111f");g.addColorStop(.55,"#102d53");g.addColorStop(1,"#075b59");ctx.fillStyle=g;ctx.fillRect(0,0,c.width,c.height);ctx.textAlign="center";ctx.fillStyle="#54ead9";ctx.font=`900 54px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"NISCHAY QUIZ",900,30),540,92);ctx.fillStyle="#fff";ctx.font=`800 34px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"TOP 10 • BSEB MERIT LIST",900,40),540,150);ctx.fillStyle="#b7cbe5";ctx.font=`600 23px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,`CLASS ${currentClass.toUpperCase()} • ${todayKey}`,900,50),540,195);ctx.strokeStyle="#4b8cff";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(70,225);ctx.lineTo(1010,225);ctx.stroke();if(!top.length){ctx.fillStyle="#fff";ctx.font=`26px ${fontFallback}`;ctx.fillText(currentLang==="hi"?"अभी कोई रिकॉर्ड उपलब्ध नहीं है":"No records available yet",540,620)}top.forEach((student,i)=>{const y=270+i*91;ctx.fillStyle=i===0?"#ffd16622":"#ffffff0b";ctx.fillRect(62,y,956,73);ctx.fillStyle=i===0?"#ffd166":i===1?"#dce7f5":i===2?"#f3b58a":"#fff";ctx.textAlign="left";ctx.font=`800 27px ${fontFallback}`;ctx.fillText(`#${i+1}`,85,y+45);ctx.font=`700 25px ${fontFallback}`;const combined=`${student.name} • ${student.district}`;ctx.fillText(fitCanvasText(ctx,combined,690,90),170,y+45);ctx.textAlign="right";ctx.font=`700 25px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,`${student.score} / ${student.total}`,110,18),985,y+45)});ctx.textAlign="center";ctx.fillStyle="#7af2dc";ctx.font=`700 23px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"JOIN OUR OFFICIAL WHATSAPP CHANNEL",900,60),540,1240);ctx.fillStyle="#b7cbe5";ctx.font=`500 18px ${fontFallback}`;ctx.fillText(fitCanvasText(ctx,"Daily practice • Smart quizzes • Academic growth",900,70),540,1280);const a=document.createElement("a");a.download=`Nischay_Top10_${currentClass}_${todayKey}.png`;a.href=c.toDataURL("image/png");a.click();toast(currentLang==="hi"?"HD पोस्टर डाउनलोड हो गया।":"HD poster downloaded.")}catch(e){console.error(e);toast(currentLang==="hi"?"पोस्टर बनाने में समस्या हुई। Google Sheets कनेक्शन जांचें।":"Could not create poster. Check the Google Sheets connection.")}finally{btn.disabled=false;btn.textContent=old}}
 
-// --- Initialization ---
 try {
     initUid(); 
     document.querySelectorAll(".overlay").forEach(o=>o.addEventListener("click",e=>{if(e.target===o)closeModal(o.id)}));
