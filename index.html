@@ -36,9 +36,43 @@
 :root{--bg:#07111f;--panel:#0e1b2e;--panel2:#12233a;--text:#f4f8ff;--muted:#9db0c9;--line:#263b57;--blue:#4b8cff;--cyan:#45e4d4;--green:#35d39a;--red:#ff6b7d;--gold:#ffd166;--shadow:0 18px 55px #0005}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 10% -10%,#173c72 0,transparent 36%),radial-gradient(ellipse at 100% 5%,#075b59 0,transparent 26%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;-webkit-tap-highlight-color:transparent}
 body.light{--bg:#f4f8fd;--panel:#ffffff;--panel2:#edf3fa;--text:#11223a;--muted:#576b85;--line:#d3dfef;--shadow:0 18px 45px #1c355814;background:radial-gradient(ellipse at 0 0,#e4efff 0,transparent 40%),var(--bg)}
-button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #45e4d4;outline-offset:2px}.app{max-width:1080px;margin:auto;padding:0 16px}.topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.topinner{max-width:1080px;margin:auto;min-height:72px;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:11px;cursor:pointer;min-width:0}.brandmark{width:43px;height:43px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#061425;font-size:22px;box-shadow:0 8px 24px #4b8cff40}.brandname{font-size:19px;font-weight:900;letter-spacing:-.5px;line-height:1.15}.brandname small{display:block;color:var(--muted);font-size:10px;font-weight:750;letter-spacing:1.5px;margin-top:4px}.top-actions{display:flex;gap:8px;align-items:center}.btn{border:1px solid var(--line);border-radius:13px;background:var(--panel2);color:var(--text);padding:10px 13px;font-weight:750;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:7px;text-decoration:none}.btn:hover{transform:translateY(-1px);border-color:var(--blue)}.btn.primary{background:linear-gradient(110deg,#3978f6,#4e9dff);border:0;color:white;box-shadow:0 8px 22px #3978f640}.btn.green{background:#19b87e;border:0;color:#041b14}.btn.small{font-size:12px;padding:8px 10px;border-radius:10px}.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}.wa{background:linear-gradient(135deg,#20c875,#0b9f62);color:#fff;border:1px solid #ffffff24;box-shadow:0 7px 18px #16a66b30;font-weight:850;white-space:nowrap}.wa:hover{background:linear-gradient(135deg,#18b969,#078652);border-color:#ffffff70}.wa-icon{width:24px;height:24px;display:inline-grid;place-items:center;border-radius:50%;background:#ffffff24;font-size:15px;line-height:1;flex:0 0 24px}.wa-label{display:inline!important;font-size:12px;letter-spacing:.1px}.wa-arrow{font-size:12px;opacity:.9}.main{padding:28px 0 42px;min-height:70vh}.view{display:none;animation:up .3s ease}.view.active{display:block}@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.hero{position:relative;overflow:hidden;border:1px solid #3c6391;border-radius:27px;padding:clamp(23px,5vw,44px);background:linear-gradient(120deg,#10264aee,#0c2f3bee 70%,#064a48dd);box-shadow:var(--shadow);margin-bottom:20px}.eyebrow{display:inline-flex;align-items:center;gap:7px;background:#ffffff12;border:1px solid #ffffff20;color:#a7f8ed;border-radius:30px;padding:6px 11px;font-size:11px;font-weight:850;letter-spacing:1.2px;text-transform:uppercase}.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.12;letter-spacing:-1.1px;margin:17px 0 10px;max-width:650px}.hero h1 span{background:linear-gradient(90deg,#fff,#8deee0);background-clip:text;color:transparent}.hero p{color:#c0d2e9;max-width:630px;margin:0 0 22px;font-size:15px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:25px;max-width:600px}.stat{padding:12px 14px;border-radius:15px;background:#ffffff0b;border:1px solid #ffffff19}.stat b{display:block;font-size:19px;color:#fff}.stat span{font-size:11px;color:#bdd0e8}.grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:18px;align-items:start}.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,26px);box-shadow:var(--shadow);margin-bottom:18px}.cardhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.card h2{font-size:19px;line-height:1.3;margin:0;letter-spacing:-.3px}.muted{color:var(--muted)}.sub{font-size:13px;color:var(--muted);margin:6px 0 0}.rules{background:color-mix(in srgb,var(--blue) 10%,var(--panel));border:1px solid color-mix(in srgb,var(--blue) 25%,var(--line));border-radius:15px;padding:14px 16px;margin:18px 0;font-size:13px}.rules strong{color:var(--cyan)}.rules ul{padding-left:19px;margin:8px 0 0}.rules li{margin:5px 0;color:var(--muted)}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 21px}.tab{padding:13px 6px;border-radius:13px;border:1px solid var(--line);background:var(--panel2);color:var(--muted);font-weight:850}.tab.active{background:linear-gradient(135deg,#2454a8,#277f95);border-color:#64d9dc;color:white;box-shadow:0 8px 20px #287ab52b}.field{margin-bottom:15px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:7px}.input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:13px;padding:12px 14px;background:var(--panel2);color:var(--text)}.full{width:100%;min-height:51px;font-size:15px}.notice{display:none;padding:12px 14px;border-radius:13px;background:#ff6b7d15;border:1px solid #ff6b7d70;color:var(--red);font-weight:750;font-size:13px;margin-bottom:15px}.notice.show{display:block}.lbtable{width:100%;border-collapse:collapse;font-size:13px}.lbtable th{text-align:left;padding:11px 7px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--line)}.lbtable td{padding:12px 7px;border-bottom:1px solid var(--line);font-weight:650}.rank{width:28px;height:28px;border-radius:9px;display:inline-grid;place-items:center;background:var(--panel2);font-size:12px}.rank.r1{background:#ffd166;color:#583b00}.rank.r2{background:#dce7f5;color:#253a54}.rank.r3{background:#f3b58a;color:#542b0d}.empty{text-align:center;padding:28px 8px!important;color:var(--muted)!important}.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);font-size:11px;font-weight:800;color:var(--muted)}.quiztop{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px dashed var(--line);padding-bottom:16px;margin-bottom:22px}.progress{height:7px;background:var(--panel2);border-radius:9px;overflow:hidden;margin:0 0 22px}.progress div{height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));width:0;transition:width .25s}.question{font-size:clamp(19px,3vw,24px);line-height:1.5;font-weight:850;margin:0 0 22px}.option{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:15px;border:1px solid var(--line);border-radius:15px;background:var(--panel2);color:var(--text);margin:10px 0;font-weight:650;line-height:1.45}.option .letter{flex:0 0 29px;height:29px;display:grid;place-items:center;border-radius:9px;background:var(--panel);border:1px solid var(--line);font-size:12px;color:var(--blue);font-weight:900}.option.correct{border-color:var(--green);background:#35d39a12;color:var(--green)}.option.wrong{border-color:var(--red);background:#ff6b7d12;color:var(--red)}.fact{display:none;padding:15px;border-left:3px solid var(--cyan);border-radius:12px;background:color-mix(in srgb,var(--cyan) 8%,var(--panel));margin-top:16px;font-size:14px}.fact.show{display:block}.quizfoot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px}.result{text-align:center;padding:35px 20px}.scorecircle{width:145px;height:145px;border-radius:50%;margin:22px auto;display:grid;place-items:center;background:radial-gradient(circle at center,var(--panel) 58%,transparent 60%),conic-gradient(var(--cyan) 0 75%,var(--line) 75%);font-size:27px;font-weight:950}.resultgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}.resultitem{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:13px}.resultitem b{display:block;font-size:19px}.resultitem span{font-size:11px;color:var(--muted)}.document h1{font-size:25px;border-bottom:1px solid var(--line);padding-bottom:15px}.document h2{font-size:17px;color:var(--cyan);margin-top:26px}.footer{border-top:1px solid var(--line);padding:25px 12px 32px;text-align:center;color:var(--muted);font-size:12px}.footer strong{color:var(--text)}.footer a{color:var(--cyan);text-decoration:none;font-weight:750}.footer a:hover{text-decoration:underline}.footerlinks{display:flex;justify-content:center;gap:17px;flex-wrap:wrap;margin-top:12px}.linkbtn{color:var(--cyan);font-weight:750;cursor:pointer;background:none;border:0;padding:3px}.overlay{position:fixed;inset:0;background:#020814c9;backdrop-filter:blur(7px);z-index:50;display:none;align-items:center;justify-content:center;padding:18px}.overlay.open{display:flex}.modal{width:min(100%,440px);background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:var(--shadow)}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:80;background:var(--text);color:var(--bg);padding:12px 17px;border-radius:12px;font-size:13px;font-weight:800;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #45e4d4;outline-offset:2px}
+.app{max-width:1080px;margin:auto;padding:0 16px}
 
-/* ⚪️ लाइट मोड में हीरो सेक्शन का व्हाइट लुक */
+/* 🎯 हेडर: डेस्कटॉप और मोबाइल पर एक सीध (एक लय) में */
+.topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.topinner{max-width:1080px;margin:auto;min-height:64px;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.brand{display:flex;align-items:center;gap:10px;cursor:pointer;min-width:0;flex-shrink:1}
+.brandmark{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#061425;font-size:20px;flex-shrink:0;box-shadow:0 6px 18px #4b8cff35}
+.brandname{font-size:17px;font-weight:900;letter-spacing:-.4px;line-height:1.15;white-space:nowrap}
+.brandname small{display:block;color:var(--muted);font-size:9.5px;font-weight:750;letter-spacing:1px;margin-top:2px}
+.top-actions{display:flex;gap:6px;align-items:center;flex-shrink:0}
+
+/* हेडर बटन एक समान ऊँचाई व स्टाइल */
+.btn{border:1px solid var(--line);border-radius:12px;background:var(--panel2);color:var(--text);padding:8px 12px;font-weight:750;font-size:13px;height:38px;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;box-sizing:border-box}
+.btn:hover{transform:translateY(-1px);border-color:var(--blue)}
+.btn.primary{background:linear-gradient(110deg,#3978f6,#4e9dff);border:0;color:white;box-shadow:0 8px 22px #3978f640}
+.btn.green{background:#19b87e;border:0;color:#041b14}
+.btn.small{font-size:12px;padding:7px 11px;height:36px;border-radius:10px}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.wa{background:linear-gradient(135deg,#20c875,#0b9f62);color:#fff;border:1px solid #ffffff24;box-shadow:0 6px 16px #16a66b30;font-weight:800;white-space:nowrap}
+.wa:hover{background:linear-gradient(135deg,#18b969,#078652);border-color:#ffffff70}
+.wa-icon{font-size:15px;line-height:1}
+
+.main{padding:24px 0 42px;min-height:70vh}.view{display:none;animation:up .3s ease}.view.active{display:block}@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ⚪️ हीरो सेक्शन */
+.hero{position:relative;overflow:hidden;border:1px solid #3c6391;border-radius:24px;padding:clamp(20px,4.5vw,40px);background:linear-gradient(120deg,#10264aee,#0c2f3bee 70%,#064a48dd);box-shadow:var(--shadow);margin-bottom:20px}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;background:#ffffff12;border:1px solid #ffffff20;color:#a7f8ed;border-radius:30px;padding:5px 11px;font-size:11px;font-weight:850;letter-spacing:1px;text-transform:uppercase}
+.hero h1{font-size:clamp(26px,4.8vw,42px);line-height:1.15;letter-spacing:-1px;margin:15px 0 10px;max-width:650px}
+.hero h1 span{background:linear-gradient(90deg,#fff,#8deee0);background-clip:text;-webkit-background-clip:text;color:transparent}
+.hero p{color:#c0d2e9;max-width:630px;margin:0 0 20px;font-size:14.5px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px;max-width:600px}
+.stat{padding:11px 13px;border-radius:14px;background:#ffffff0b;border:1px solid #ffffff19}
+.stat b{display:block;font-size:18px;color:#fff}
+.stat span{font-size:11px;color:#bdd0e8}
+
+/* लाइट मोड में हीरो का व्हाइट लुक */
 body.light .hero{background:linear-gradient(135deg,#ffffff 0%,#f0f6ff 60%,#e8fbf8 100%);border-color:#c8dbf0;box-shadow:0 14px 40px #1e3a6112}
 body.light .hero h1{color:#0d1e38}
 body.light .hero h1 span{background:linear-gradient(90deg,#1a56db,#028476);background-clip:text;-webkit-background-clip:text;color:transparent}
@@ -54,22 +88,91 @@ body.light .option.correct{color:#087a51}
 body.light .option.wrong{color:#bd3047}
 body.light .topbar{background:color-mix(in srgb,#f4f8fd 88%,transparent)}
 
+.grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:18px;align-items:start}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:clamp(16px,3vw,24px);box-shadow:var(--shadow);margin-bottom:18px}
+.cardhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
+.card h2{font-size:18px;line-height:1.3;margin:0;letter-spacing:-.3px}
+.muted{color:var(--muted)}.sub{font-size:12.5px;color:var(--muted);margin:4px 0 0}
+.rules{background:color-mix(in srgb,var(--blue) 10%,var(--panel));border:1px solid color-mix(in srgb,var(--blue) 25%,var(--line));border-radius:14px;padding:13px 15px;margin:16px 0;font-size:13px}
+.rules strong{color:var(--cyan)}.rules ul{padding-left:18px;margin:7px 0 0}.rules li{margin:5px 0;color:var(--muted)}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0 18px}
+.tab{padding:11px 6px;border-radius:12px;border:1px solid var(--line);background:var(--panel2);color:var(--muted);font-weight:800;font-size:13px}
+.tab.active{background:linear-gradient(135deg,#2454a8,#277f95);border-color:#64d9dc;color:white;box-shadow:0 6px 18px #287ab52b}
+.field{margin-bottom:14px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}
+.input{width:100%;min-height:46px;border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:var(--panel2);color:var(--text)}
+.full{width:100%;min-height:48px;font-size:14.5px}
+.notice{display:none;padding:11px 13px;border-radius:12px;background:#ff6b7d15;border:1px solid #ff6b7d70;color:var(--red);font-weight:750;font-size:13px;margin-bottom:14px}
+.notice.show{display:block}
+.lbtable{width:100%;border-collapse:collapse;font-size:13px}
+.lbtable th{text-align:left;padding:10px 6px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--line)}
+.lbtable td{padding:11px 6px;border-bottom:1px solid var(--line);font-weight:650}
+.rank{width:26px;height:26px;border-radius:8px;display:inline-grid;place-items:center;background:var(--panel2);font-size:11.5px}
+.rank.r1{background:#ffd166;color:#583b00}.rank.r2{background:#dce7f5;color:#253a54}.rank.r3{background:#f3b58a;color:#542b0d}
+.empty{text-align:center;padding:26px 8px!important;color:var(--muted)!important}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);font-size:11px;font-weight:800;color:var(--muted)}
+.quiztop{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px dashed var(--line);padding-bottom:15px;margin-bottom:20px}
+.progress{height:6px;background:var(--panel2);border-radius:8px;overflow:hidden;margin:0 0 20px}.progress div{height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));width:0;transition:width .25s}
+.question{font-size:clamp(18px,2.8vw,23px);line-height:1.5;font-weight:850;margin:0 0 20px}
+.option{display:flex;align-items:center;gap:11px;width:100%;text-align:left;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--panel2);color:var(--text);margin:9px 0;font-weight:650;line-height:1.45}
+.option .letter{flex:0 0 28px;height:28px;display:grid;place-items:center;border-radius:8px;background:var(--panel);border:1px solid var(--line);font-size:12px;color:var(--blue);font-weight:900}
+.option.correct{border-color:var(--green);background:#35d39a12;color:var(--green)}
+.option.wrong{border-color:var(--red);background:#ff6b7d12;color:var(--red)}
+.fact{display:none;padding:14px;border-left:3px solid var(--cyan);border-radius:11px;background:color-mix(in srgb,var(--cyan) 8%,var(--panel));margin-top:15px;font-size:13.5px}
+.fact.show{display:block}
+.quizfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:18px}
+.result{text-align:center;padding:32px 18px}
+.scorecircle{width:140px;height:140px;border-radius:50%;margin:20px auto;display:grid;place-items:center;background:radial-gradient(circle at center,var(--panel) 58%,transparent 60%),conic-gradient(var(--cyan) 0 75%,var(--line) 75%);font-size:26px;font-weight:950}
+.resultgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:20px 0}
+.resultitem{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:12px}
+.resultitem b{display:block;font-size:18px}.resultitem span{font-size:11px;color:var(--muted)}
+.footer{border-top:1px solid var(--line);padding:24px 12px 30px;text-align:center;color:var(--muted);font-size:12px}
+.footer strong{color:var(--text)}.footer a{color:var(--cyan);text-decoration:none;font-weight:750}
+.footerlinks{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:10px}
+.linkbtn{color:var(--cyan);font-weight:750;cursor:pointer;background:none;border:0;padding:3px}
+.overlay{position:fixed;inset:0;background:#020814c9;backdrop-filter:blur(7px);z-index:50;display:none;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.modal{width:min(100%,440px);background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:80;background:var(--text);color:var(--bg);padding:11px 16px;border-radius:11px;font-size:12.5px;font-weight:800;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}
+
 @keyframes spinWheel {0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 .spin-icon{display:inline-block;transition:transform 0.2s linear}
 .is-spinning .spin-icon{animation:spinWheel 0.75s linear infinite}
-.lb-actions{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.lb-actions{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
 .see-all-btn{color:var(--cyan);background:none;border:0;padding:0;font-size:11px;font-weight:800;text-decoration:underline;cursor:pointer}
 body.light .see-all-btn{color:#028476}
-@media(max-width:780px){.grid{grid-template-columns:1fr}.hero{border-radius:22px}.stats{gap:7px}.stat{padding:10px}.stat b{font-size:17px}.lbtable{font-size:12px}}
+
+@media(max-width:780px){
+  .grid{grid-template-columns:1fr}
+  .hero{border-radius:20px}
+  .topinner{min-height:58px;padding:6px 12px}
+  .brandmark{width:36px;height:36px;font-size:18px}
+  .brandname{font-size:15px}
+  .brandname small{font-size:8px}
+  .btn.small{height:34px;padding:6px 9px;font-size:11.5px}
+  .wa{padding:6px 9px!important}
+  .stats{gap:6px}.stat{padding:9px}.stat b{font-size:16px}
+  .lbtable{font-size:12px}
+}
+@media(max-width:390px){
+  .brandname small{display:none}
+  .wa-label{display:none} /* बहुत छोटी स्क्रीन पर सिर्फ आइकॉन */
+  .wa{padding:6px 8px!important}
+}
 </style>
 </head>
 <body>
 <header class="topbar"><div class="topinner">
-  <div class="brand" onclick="switchView('view-home')"><div class="brandmark">🎯</div><div class="brandname">NISCHAY QUIZ<small>BSEB • DAILY CHALLENGE</small></div></div>
+  <div class="brand" onclick="switchView('view-home')">
+    <div class="brandmark">🎯</div>
+    <div class="brandname">NISCHAY QUIZ<small id="subLogo">BSEB • DAILY CHALLENGE</small></div>
+  </div>
   <div class="top-actions">
-    <a class="btn wa small" href="https://whatsapp.com/channel/0029VbDgXJG0lwgytlQMHP0I" target="_blank" rel="noopener"><span class="wa-icon">☎</span><span class="wa-label">WhatsApp चैनल</span><span class="wa-arrow">↗</span></a>
+    <a class="btn wa small" href="https://whatsapp.com/channel/0029VbDgXJG0lwgytlQMHP0I" target="_blank" rel="noopener">
+      <span class="wa-icon">☎</span><span class="wa-label" id="waText">WhatsApp चैनल</span>
+    </a>
     <button class="btn small" onclick="toggleLanguage()" id="langBtn">EN</button>
-    <button class="btn small" onclick="toggleTheme()" id="themeBtn">☀️</button>
+    <button class="btn small" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle Theme">☀️</button>
   </div>
 </div></header>
 
@@ -77,36 +180,79 @@ body.light .see-all-btn{color:#028476}
 <!-- 1. होम दृश्य -->
 <section id="view-home" class="view active">
   <div class="hero">
-    <div class="eyebrow">✦ BIHAR BOARD • SMART ASSESSMENT</div>
+    <div class="eyebrow" id="heroEyebrow">✦ BIHAR BOARD • SMART ASSESSMENT</div>
     <h1 id="heroTitle">हर दिन सीखें।<br><span>हर दिन आगे बढ़ें।</span></h1>
     <p id="heroSub">बिहार बोर्ड कक्षा 10वीं, 11वीं और 12वीं के लिए दैनिक ऑनलाइन क्विज़, स्मार्ट प्रश्न और लाइव मेरिट लिस्ट।</p>
     <a href="#quizForm" class="btn primary" id="heroCta">आज की चुनौती शुरू करें <span>↗</span></a>
-    <div class="stats"><div class="stat"><b>10th–12th</b><span>कक्षा-वार टेस्ट</span></div><div class="stat"><b>15:00</b><span>मिनट की समय-सीमा</span></div><div class="stat"><b>TOP 10</b><span>लाइव मेरिट लिस्ट</span></div></div>
+    <div class="stats">
+      <div class="stat"><b>10th–12th</b><span id="stat1">कक्षा-वार टेस्ट</span></div>
+      <div class="stat"><b>15:00</b><span id="stat2">मिनट की समय-सीमा</span></div>
+      <div class="stat"><b>TOP 10</b><span id="stat3">लाइव मेरिट लिस्ट</span></div>
+    </div>
   </div>
   <div class="grid">
     <div class="card" id="quizForm">
-      <div class="cardhead"><div><h2>🚀 अपना टेस्ट शुरू करें</h2><p class="sub">जानकारी भरें और आज का टेस्ट दें।</p></div><span class="pill">● LIVE PORTAL</span></div>
-      <div class="rules"><strong>📌 परीक्षा के नियम</strong><ul><li>रैंकिंग: पहले सर्वाधिक स्कोर, फिर कम समय और फिर पहले टेस्ट देने वाले को उच्च रैंक।</li><li>प्रतिदिन प्रति कक्षा केवल 1 बार टेस्ट दे सकते हैं।</li><li>20 प्रश्नों के लिए 15 मिनट की समय सीमा।</li><li>यदि आज किसी ने भी टेस्ट नहीं दिया, तो अगले दिन वही प्रश्न सक्रिय रहेंगे।</li></ul></div>
+      <div class="cardhead">
+        <div>
+          <h2 id="startHeading">🚀 अपना टेस्ट शुरू करें</h2>
+          <p class="sub" id="startSub">जानकारी भरें और आज का टेस्ट दें।</p>
+        </div>
+        <span class="pill">● LIVE PORTAL</span>
+      </div>
+      <div class="rules">
+        <strong id="rulesTitle">📌 परीक्षा के नियम</strong>
+        <ul id="rulesList">
+          <li>रैंकिंग: पहले सर्वाधिक स्कोर, फिर कम समय और फिर पहले टेस्ट देने वाले को उच्च रैंक।</li>
+          <li>प्रतिदिन प्रति कक्षा केवल 1 बार टेस्ट दे सकते हैं।</li>
+          <li>20 प्रश्नों के लिए 15 मिनट की समय सीमा।</li>
+          <li>यदि आज किसी ने भी टेस्ट नहीं दिया, तो अगले दिन वही प्रश्न सक्रिय रहेंगे।</li>
+        </ul>
+      </div>
       <div id="attemptNotice" class="notice">⚠️ आप आज इस कक्षा का टेस्ट दे चुके हैं। कल फिर आएं।</div>
-      <div class="tabs"><button class="tab active" id="tab10" onclick="selectClass('10th')">कक्षा 10वीं</button><button class="tab" id="tab11" onclick="selectClass('11th')">कक्षा 11वीं</button><button class="tab" id="tab12" onclick="selectClass('12th')">कक्षा 12वीं</button></div>
-      <div class="field"><label for="studentName">विद्यार्थी का पूरा नाम</label><input id="studentName" class="input" maxlength="80" autocomplete="name" placeholder="जैसे: प्रिंस कुमार"></div>
-      <div class="field"><label for="districtSelect">अपना ज़िला चुनें</label><select id="districtSelect" class="input"><option value="">-- अपना ज़िला चुनें --</option></select></div>
+      <div class="tabs">
+        <button class="tab active" id="tab10" onclick="selectClass('10th')">कक्षा 10वीं</button>
+        <button class="tab" id="tab11" onclick="selectClass('11th')">कक्षा 11वीं</button>
+        <button class="tab" id="tab12" onclick="selectClass('12th')">कक्षा 12वीं</button>
+      </div>
+      <div class="field">
+        <label id="nameLabel" for="studentName">विद्यार्थी का पूरा नाम</label>
+        <input id="studentName" class="input" maxlength="80" autocomplete="name" placeholder="जैसे: प्रिंस कुमार">
+      </div>
+      <div class="field">
+        <label id="districtLabel" for="districtSelect">अपना ज़िला चुनें</label>
+        <select id="districtSelect" class="input"><option value="">-- अपना ज़िला चुनें --</option></select>
+      </div>
       <button class="btn primary full" id="startBtn" onclick="startQuiz()">आज का टेस्ट शुरू करें →</button>
-      <p class="sub" style="margin-top:12px">आपका नाम, ज़िला, कक्षा और स्कोर मेरिट लिस्ट के लिए Google Sheets पर सुरक्षित भेजे जाते हैं।</p>
+      <p class="sub" id="dataHint" style="margin-top:12px">आपका नाम, ज़िला, कक्षा और स्कोर मेरिट लिस्ट के लिए Google Sheets पर सुरक्षित भेजे जाते हैं।</p>
     </div>
     <div class="card">
       <div class="cardhead">
         <div>
-          <h2>🏆 लाइव टॉप 10</h2>
-          <p class="sub">कक्षा <span id="lbClass">10th</span> • आज के सर्वश्रेष्ठ स्कोर</p>
+          <h2 id="lbTitle">🏆 लाइव टॉप 10</h2>
+          <p class="sub">कक्षा <span id="lbClass">10th</span> • <span id="lbSubText">आज के सर्वश्रेष्ठ स्कोर</span></p>
         </div>
         <div class="lb-actions">
-          <button class="see-all-btn" onclick="openAllToppersView()">सभी टॉपर देखें ↗</button>
-          <button class="btn small" onclick="loadLeaderboard()" id="refreshBtn"><span class="spin-icon">↻</span> <span>Refresh</span></button>
+          <button class="see-all-btn" id="seeAllBtn" onclick="openAllToppersView()">सभी टॉपर देखें ↗</button>
+          <button class="btn small" onclick="loadLeaderboard()" id="refreshBtn"><span class="spin-icon">↻</span> <span id="refreshBtnText">Refresh</span></button>
         </div>
       </div>
-      <div style="overflow-x:auto"><table class="lbtable"><thead><tr><th>रैंक</th><th>विद्यार्थी</th><th>ज़िला</th><th>स्कोर</th><th>समय</th></tr></thead><tbody id="lbBody"><tr><td colspan="5" class="empty">लीडरबोर्ड लोड हो रहा है…</td></tr></tbody></table></div>
-      <p class="sub" style="margin-top:13px">सूची Google Sheets के आज के रिकॉर्ड से तैयार होती है।</p>
+      <div style="overflow-x:auto">
+        <table class="lbtable">
+          <thead>
+            <tr>
+              <th id="thRank">रैंक</th>
+              <th id="thName">विद्यार्थी</th>
+              <th id="thDistrict">ज़िला</th>
+              <th id="thScore">स्कोर</th>
+              <th id="thTime">समय</th>
+            </tr>
+          </thead>
+          <tbody id="lbBody">
+            <tr><td colspan="5" class="empty">लीडरबोर्ड लोड हो रहा है…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sub" id="lbFoot" style="margin-top:13px">सूची Google Sheets के आज के रिकॉर्ड से तैयार होती है।</p>
     </div>
   </div>
 </section>
@@ -114,31 +260,31 @@ body.light .see-all-btn{color:#028476}
 <!-- 2. फुल स्क्रीन ऑल-टाइम टॉपर दृश्य -->
 <section id="view-all-toppers" class="view">
   <div class="card">
-    <div class="cardhead" style="flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:16px">
+    <div class="cardhead" style="flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:14px">
       <div>
-        <h2 style="font-size:22px">🌟 सभी टॉपर की संपूर्ण मेरिट लिस्ट</h2>
-        <p class="sub">कक्षा <span id="allToppersClassLabel">10th</span> • Google Sheets के सभी वैध रिकॉर्ड्स (स्कोर व समय अनुसार)</p>
+        <h2 id="allTopHeading" style="font-size:21px">🌟 सभी टॉपर की संपूर्ण मेरिट लिस्ट</h2>
+        <p class="sub" id="allTopSub">कक्षा <span id="allToppersClassLabel">10th</span> • Google Sheets के सभी वैध रिकॉर्ड्स (स्कोर व समय अनुसार)</p>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
-        <button class="btn small" onclick="loadAllToppersData()" id="allToppersRefreshBtn"><span class="spin-icon">↻</span> रिफ्रेश</button>
-        <button class="btn small primary" onclick="switchView('view-home')">← होम पर वापस</button>
+        <button class="btn small" onclick="loadAllToppersData()" id="allToppersRefreshBtn"><span class="spin-icon">↻</span> <span id="allTopRefText">रिफ्रेश</span></button>
+        <button class="btn small primary" onclick="switchView('view-home')" id="allTopBackBtn">← होम पर वापस</button>
       </div>
     </div>
-    <div class="tabs" style="max-width:400px;margin:16px 0">
+    <div class="tabs" style="max-width:380px;margin:15px 0">
       <button class="tab" id="allTab10" onclick="switchAllToppersClass('10th')">कक्षा 10वीं</button>
       <button class="tab" id="allTab11" onclick="switchAllToppersClass('11th')">कक्षा 11वीं</button>
       <button class="tab" id="allTab12" onclick="switchAllToppersClass('12th')">कक्षा 12वीं</button>
     </div>
     <div style="overflow-x:auto;min-height:300px">
-      <table class="lbtable" style="min-width:540px">
+      <table class="lbtable" style="min-width:520px">
         <thead>
           <tr>
-            <th>रैंक</th>
-            <th>विद्यार्थी</th>
-            <th>ज़िला</th>
-            <th>स्कोर</th>
-            <th>समय</th>
-            <th>दिनांक</th>
+            <th id="athRank">रैंक</th>
+            <th id="athName">विद्यार्थी</th>
+            <th id="athDistrict">ज़िला</th>
+            <th id="athScore">स्कोर</th>
+            <th id="athTime">समय</th>
+            <th id="athDate">दिनांक</th>
           </tr>
         </thead>
         <tbody id="allToppersFullBody">
@@ -163,20 +309,32 @@ body.light .see-all-btn{color:#028476}
 
 <!-- 4. परिणाम दृश्य -->
 <section id="view-result" class="view"><div class="card result">
-  <div class="eyebrow">ASSESSMENT COMPLETE</div><h1 id="resHeading" style="font-size:clamp(25px,5vw,34px);margin:17px 0 4px">बहुत बढ़िया! 🎉</h1><p class="muted" id="resSummary"></p>
+  <div class="eyebrow">ASSESSMENT COMPLETE</div><h1 id="resHeading" style="font-size:clamp(24px,4.5vw,32px);margin:16px 0 4px">बहुत बढ़िया! 🎉</h1><p class="muted" id="resSummary"></p>
   <div class="scorecircle" id="scoreBadge">0 / 20</div>
-  <div class="resultgrid"><div class="resultitem"><b id="correctCount">0</b><span>सही उत्तर</span></div><div class="resultitem"><b id="wrongCount">0</b><span>गलत / छोड़े</span></div><div class="resultitem"><b id="percentCount">0%</b><span>प्रतिशत</span></div></div>
+  <div class="resultgrid">
+    <div class="resultitem"><b id="correctCount">0</b><span id="correctLabel">सही उत्तर</span></div>
+    <div class="resultitem"><b id="wrongCount">0</b><span id="wrongLabel">गलत / छोड़े</span></div>
+    <div class="resultitem"><b id="percentCount">0%</b><span id="percentLabel">प्रतिशत</span></div>
+  </div>
   <p id="resMsg" class="muted">आपका परिणाम Google Sheets पर भेजा जा रहा है।</p>
-  <div class="rules" style="text-align:left;margin-top:22px"><strong>📢 रोज़ के अपडेट पाएं</strong><p style="margin:8px 0 13px;color:var(--muted)">दैनिक सवाल और टॉपर अपडेट के लिए आधिकारिक WhatsApp चैनल से जुड़ें।</p><a class="btn wa" href="https://whatsapp.com/channel/0029VbDgXJG0lwgytlQMHP0I" target="_blank" rel="noopener">WhatsApp चैनल से जुड़ें ↗</a></div>
-  <button class="btn full" onclick="switchView('view-home');loadLeaderboard()" style="margin-top:6px">⌂ होम और मेरिट लिस्ट पर जाएं</button>
+  <div class="rules" style="text-align:left;margin-top:20px">
+    <strong id="waCardTitle">📢 रोज़ के अपडेट पाएं</strong>
+    <p id="waCardDesc" style="margin:7px 0 12px;color:var(--muted)">दैनिक सवाल और टॉपर अपडेट के लिए आधिकारिक WhatsApp चैनल से जुड़ें।</p>
+    <a class="btn wa" href="https://whatsapp.com/channel/0029VbDgXJG0lwgytlQMHP0I" target="_blank" rel="noopener" id="waCardBtn">WhatsApp चैनल से जुड़ें ↗</a>
+  </div>
+  <button class="btn full" onclick="switchView('view-home');loadLeaderboard()" id="homeBtn" style="margin-top:6px">⌂ होम और मेरिट लिस्ट पर जाएं</button>
 </div></section>
 
 <!-- 5. पॉलिसी दृश्य -->
 <section id="view-policy" class="view"><div class="card document">
-  <button class="btn small" onclick="switchView('view-home')">← होम पर वापस</button>
+  <button class="btn small" onclick="switchView('view-home')" id="backBtn">← होम पर वापस</button>
   <div id="policyHi">
-  <h1>गोपनीयता नीति एवं सेवा की शर्तें</h1><p><b>प्रभावी तिथि:</b> 15 अक्टूबर 2026 • <b>संचालक:</b> Nischay Quiz Portal (NischayDesk)</p>
-  <h2>1. उद्देश्य</h2><p>Nischay Quiz बिहार बोर्ड के विद्यार्थियों के लिए स्वतंत्र दैनिक स्व-मूल्यांकन मंच है।</p>
+    <h1>गोपनीयता नीति एवं सेवा की शर्तें</h1><p><b>प्रभावी तिथि:</b> 15 अक्टूबर 2026 • <b>संचालक:</b> Nischay Quiz Portal (NischayDesk)</p>
+    <h2>1. उद्देश्य</h2><p>Nischay Quiz बिहार बोर्ड के विद्यार्थियों के लिए स्वतंत्र दैनिक स्व-मूल्यांकन मंच है।</p>
+  </div>
+  <div id="policyEn" class="hidden">
+    <h1>Privacy Policy & Terms of Service</h1><p><b>Effective Date:</b> October 15, 2026 • <b>Operator:</b> Nischay Quiz Portal (NischayDesk)</p>
+    <h2>1. Purpose</h2><p>Nischay Quiz is an independent daily self-assessment platform for Bihar Board students.</p>
   </div>
 </div></section>
 </main>
@@ -186,17 +344,17 @@ body.light .see-all-btn{color:#028476}
   <strong>Nischay Quiz Foundation</strong> • Part of <a href="https://nischaydesk.github.io/" target="_blank" rel="noopener">NischayDesk Ecosystem</a><br>
   © 2026 Nischay Quiz • Built for daily learning
   <div class="footerlinks">
-    <button class="linkbtn" onclick="switchView('view-policy')">गोपनीयता नीति एवं शर्तें</button>
+    <button class="linkbtn" onclick="switchView('view-policy')" id="policyLink">गोपनीयता नीति एवं शर्तें</button>
     <button class="linkbtn" onclick="openAdminModal()">🔒 Admin Poster</button>
   </div>
 </footer>
 
-<div class="overlay" id="adminLoginModal"><div class="modal"><h2>🔒 Admin Authentication</h2><p class="sub" style="margin-bottom:17px">केवल एडमिन के लिए। पासवर्ड दर्ज करें।</p><input id="adminPwdInput" type="password" class="input" placeholder="Admin password" style="margin-bottom:12px"><p id="adminErrorMsg" class="hidden" style="color:var(--red);font-weight:750;font-size:13px">गलत पासवर्ड।</p><button class="btn primary full" onclick="verifyAdminPassword()">लॉगिन करें →</button><button class="btn full" onclick="closeModal('adminLoginModal')" style="margin-top:8px">रद्द करें</button></div></div>
+<div class="overlay" id="adminLoginModal"><div class="modal"><h2 id="adminTitle">🔒 Admin Authentication</h2><p class="sub" style="margin-bottom:16px">केवल एडमिन के लिए। पासवर्ड दर्ज करें।</p><input id="adminPwdInput" type="password" class="input" placeholder="Admin password" style="margin-bottom:12px"><p id="adminErrorMsg" class="hidden" style="color:var(--red);font-weight:750;font-size:13px">गलत पासवर्ड।</p><button class="btn primary full" onclick="verifyAdminPassword()" id="adminLoginBtn">लॉगिन करें →</button><button class="btn full" onclick="closeModal('adminLoginModal')" id="adminCancelBtn" style="margin-top:8px">रद्द करें</button></div></div>
 <div class="overlay" id="adminDashModal"><div class="modal"><h2>👑 Top 10 Poster</h2><p class="sub" style="margin-bottom:16px">चुनी गई कक्षा: <b id="adminSelectedClass">10th</b></p><canvas id="posterCanvas" width="1080" height="1350" class="hidden"></canvas><button class="btn green full" onclick="generateTopperPoster(event)">📸 HD पोस्टर डाउनलोड करें (.png)</button><button class="btn full" onclick="closeModal('adminDashModal')" style="margin-top:9px">बंद करें</button></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
-// Apps Script का लाइव URL
+// Apps Script URL
 const GOOGLE_SCRIPT_URL="https://script.google.com/macros/s/AKfycbzsigV1wqX5pnlPy83RPGCV10f-rrN2XK2meZkI70_w7y9SQLv8ZQtcxgB1J9RvjaRd/exec";
 const ADMIN_PASSWORD="Prince@2028";
 const DISTRICTS=["अररिया","अरवल","औरंगाबाद","बांका","बेगूसराय","भागलपुर","भोजपुर","बक्सर","दरभंगा","पूर्वी चंपारण","गया","गोपालगंज","जमुई","जहानाबाद","कैमूर","कटिहार","खगड़िया","किशनगंज","लखीसराय","मधेपुरा","मधुबनी","मुंगेर","मुजफ्फरपुर","नालंदा","नवादा","पटना","पूर्णिया","रोहतास","सहरसा","समस्तीपुर","सारण","शेखपुरा","शिवहर","सीतामढ़ी","सीवान","सुपौल","वैशाली","पश्चिमी चंपारण"];
@@ -302,12 +460,15 @@ function applyTheme(theme){
   document.body.classList.toggle("light",light);
   safeStorageSet("nischay_theme",light?"light":"dark");
   const b=$("themeBtn");
-  if(b) b.textContent=light?"🌙":"☀️";
+  if(b){
+    b.textContent=light?"🌙":"☀️";
+    b.title=light?(currentLang==="hi"?"डार्क मोड":"Dark Mode"):(currentLang==="hi"?"लाइट मोड":"Light Mode");
+  }
 }
 function toggleTheme(){applyTheme(document.body.classList.contains("light")?"dark":"light")}
 function localized(value,lang=currentLang,fallback=""){if(value&&typeof value==="object"&&!Array.isArray(value)){const v=value[lang]??value.hi??value.en;return v==null?fallback:String(v)}if(value==null)return fallback;return String(value)}
 
-// ⏱️ टाइमिंग फॉर्मेट: नए टेस्ट का सही समय (15 मिनट के अंदर) दिखेगा, पुराने/खाली पर "—"
+// ⏱️ टाइमिंग फॉर्मेट: नए टेस्ट का वास्तविक समय दिखेगा, पुराने/खाली पर "—"
 function formatDuration(sec){
   const s=Number(sec);
   if(isNaN(s) || s <= 0 || s > 900) return "—";
@@ -315,19 +476,104 @@ function formatDuration(sec){
   return m>0?`${m}m ${rem}s`:`${rem}s`;
 }
 
+// 🌐 संपूर्ण भाषा अनुवाद (Language Toggle)
+function toggleLanguage(){
+  currentLang=currentLang==="hi"?"en":"hi";
+  const en=currentLang==="en";
+  const lb=$("langBtn"); if(lb) lb.textContent=en?"हिंदी":"EN";
+  
+  const set=(id,hi,eng)=>{const el=$(id);if(el)el.textContent=en?eng:hi};
+  const setHtml=(id,hi,eng)=>{const el=$(id);if(el)el.innerHTML=en?eng:hi};
+
+  set("waText","WhatsApp चैनल","WhatsApp Channel");
+  set("heroEyebrow","✦ BIHAR BOARD • SMART ASSESSMENT","✦ BIHAR BOARD • SMART ASSESSMENT");
+  setHtml("heroTitle","हर दिन सीखें।<br><span>हर दिन आगे बढ़ें।</span>","Learn Every Day.<br><span>Move Ahead Every Day.</span>");
+  set("heroSub","बिहार बोर्ड कक्षा 10वीं, 11वीं और 12वीं के लिए दैनिक ऑनलाइन क्विज़, स्मार्ट प्रश्न और लाइव मेरिट लिस्ट।","Daily online quizzes, smart questions and live merit list for BSEB Classes 10th, 11th and 12th.");
+  setHtml("heroCta",'आज की चुनौती शुरू करें <span>↗</span>','Start Today\'s Challenge <span>↗</span>');
+  
+  set("stat1","कक्षा-वार टेस्ट","Class-wise Tests");
+  set("stat2","मिनट की समय-सीमा","Minute Time Limit");
+  set("stat3","लाइव मेरिट लिस्ट","Live Merit List");
+
+  set("startHeading","🚀 अपना टेस्ट शुरू करें","🚀 Start Your Test");
+  set("startSub","जानकारी भरें और आज का टेस्ट दें।","Enter your details and take today's quiz.");
+  set("rulesTitle","📌 परीक्षा के नियम","📌 Assessment Rules");
+  setHtml("rulesList",
+    en ? "<li>Ranking: Top scores rank first, tie-breaker by completion time, then earliest submitter.</li><li>Only 1 attempt per class per day allowed.</li><li>15 minutes for 20 questions. Auto-submits on time-up.</li><li>If no one takes the quiz today, the same question set remains tomorrow.</li>"
+       : "<li>रैंकिंग: पहले सर्वाधिक स्कोर, फिर कम समय और फिर पहले टेस्ट देने वाले को उच्च रैंक।</li><li>प्रतिदिन प्रति कक्षा केवल 1 बार टेस्ट दे सकते हैं।</li><li>20 प्रश्नों के लिए 15 मिनट की समय सीमा।</li><li>यदि आज किसी ने भी टेस्ट नहीं दिया, तो अगले दिन वही प्रश्न सक्रिय रहेंगे।</li>"
+  );
+
+  set("nameLabel","विद्यार्थी का पूरा नाम","Student's Full Name");
+  const sn=$("studentName"); if(sn) sn.placeholder=en?"e.g. Prince Kumar":"जैसे: प्रिंस कुमार";
+  set("districtLabel","अपना ज़िला चुनें","Select Your District");
+  const ds=$("districtSelect"); if(ds&&ds.options[0]) ds.options[0].textContent=en?"-- Select Your District --":"-- अपना ज़िला चुनें --";
+  set("startBtn","आज का टेस्ट शुरू करें →","Start Today's Quiz →");
+  set("dataHint","आपका नाम, ज़िला, कक्षा और स्कोर मेरिट लिस्ट के लिए Google Sheets पर सुरक्षित भेजे जाते हैं।","Your name, district, class and score are securely recorded on Google Sheets for the merit list.");
+
+  set("lbTitle","🏆 लाइव टॉप 10","🏆 Live Top 10");
+  set("lbSubText","आज के सर्वश्रेष्ठ स्कोर","Today's Best Scores");
+  set("seeAllBtn","सभी टॉपर देखें ↗","See All Toppers ↗");
+  set("refreshBtnText","Refresh","Refresh");
+  set("thRank","रैंक","Rank");
+  set("thName","विद्यार्थी","Student");
+  set("thDistrict","ज़िला","District");
+  set("thScore","स्कोर","Score");
+  set("thTime","समय","Time");
+  set("lbFoot","सूची Google Sheets के आज के रिकॉर्ड से तैयार होती है।","Rankings are prepared from today's Google Sheets records.");
+
+  set("allTopHeading","🌟 सभी टॉपर की संपूर्ण मेरिट लिस्ट","🌟 Full Merit List of All Toppers");
+  set("allTopRefText","रिफ्रेश","Refresh");
+  set("allTopBackBtn","← होम पर वापस","← Back Home");
+  set("athRank","रैंक","Rank");
+  set("athName","विद्यार्थी","Student");
+  set("athDistrict","ज़िला","District");
+  set("athScore","स्कोर","Score");
+  set("athTime","समय","Time");
+  set("athDate","दिनांक","Date");
+
+  set("correctLabel","सही उत्तर","Correct");
+  set("wrongLabel","गलत / छोड़े","Incorrect");
+  set("percentLabel","प्रतिशत","Percentage");
+  set("waCardTitle","📢 रोज़ के अपडेट पाएं","📢 Get Daily Updates");
+  set("waCardDesc","दैनिक सवाल और टॉपर अपडेट के लिए आधिकारिक WhatsApp चैनल से जुड़ें।","Join the official WhatsApp channel for daily questions and topper updates.");
+  set("waCardBtn","WhatsApp चैनल से जुड़ें ↗","Join WhatsApp Channel ↗");
+  set("homeBtn","⌂ होम और मेरिट लिस्ट पर जाएं","⌂ Go to Home & Merit List");
+
+  set("backBtn","← होम पर वापस","← Back Home");
+  set("policyLink","गोपनीयता नीति एवं शर्तें","Privacy Policy & Terms");
+  set("adminTitle","🔒 Admin Authentication","🔒 Admin Authentication");
+  set("adminLoginBtn","लॉगिन करें →","Log In →");
+  set("adminCancelBtn","रद्द करें","Cancel");
+
+  const ph=$("policyHi"),pe=$("policyEn");
+  if(ph) ph.classList.toggle("hidden",en);
+  if(pe) pe.classList.toggle("hidden",!en);
+
+  updateClassLabels();
+  checkDailyAttempt();
+  loadLeaderboard();
+}
+
 function updateClassLabels(){
-    ["10th","11th","12th"].forEach(c=>{
-        const tb=$("tab"+c.slice(0,2));
-        if(tb) tb.classList.toggle("active",currentClass===c);
-        const atb=$("allTab"+c.slice(0,2));
-        if(atb) atb.classList.toggle("active",allToppersClass===c);
-    });
-    const lc=$("lbClass");
-    if(lc) lc.textContent=currentLang==="hi"?({"10th":"10वीं","11th":"11वीं","12th":"12वीं"}[currentClass]):currentClass;
-    const ac=$("adminSelectedClass");
-    if(ac) ac.textContent=currentClass;
-    const atc=$("allToppersClassLabel");
-    if(atc) atc.textContent=currentLang==="hi"?({"10th":"10वीं","11th":"11वीं","12th":"12वीं"}[allToppersClass]):allToppersClass;
+  const en=currentLang==="en";
+  ["10th","11th","12th"].forEach(c=>{
+    const tb=$("tab"+c.slice(0,2));
+    if(tb){
+      tb.classList.toggle("active",currentClass===c);
+      tb.textContent=en?`Class ${c}`:`कक्षा ${c.slice(0,2)}वीं`;
+    }
+    const atb=$("allTab"+c.slice(0,2));
+    if(atb){
+      atb.classList.toggle("active",allToppersClass===c);
+      atb.textContent=en?`Class ${c}`:`कक्षा ${c.slice(0,2)}वीं`;
+    }
+  });
+  const lc=$("lbClass");
+  if(lc) lc.textContent=en?currentClass:({"10th":"10वीं","11th":"11वीं","12th":"12वीं"}[currentClass]);
+  const ac=$("adminSelectedClass");
+  if(ac) ac.textContent=currentClass;
+  const atc=$("allToppersClassLabel");
+  if(atc) atc.textContent=en?allToppersClass:({"10th":"10वीं","11th":"11वीं","12th":"12वीं"}[allToppersClass]);
 }
 
 function selectClass(cls){if(quizStarted)return;currentClass=cls;updateClassLabels();checkDailyAttempt();loadLeaderboard()}
@@ -342,11 +588,14 @@ function checkDailyAttempt(){
     const key=`nischay_attempt_${currentClass}_${todayKey}`;
     const attempted=safeStorageGet(key);
     const an=$("attemptNotice");
-    if(an) an.classList.toggle("show",!!attempted);
+    if(an){
+      an.classList.toggle("show",!!attempted);
+      an.textContent=currentLang==="hi"?"⚠️ आप आज इस कक्षा का टेस्ट दे चुके हैं। कल फिर आएं।":"⚠️ You have already taken today's test for this class.";
+    }
     const sb=$("startBtn");
     if(sb){
         sb.disabled=!!attempted||submitting;
-        sb.textContent=attempted?"आज का टेस्ट पूरा हो चुका है ✓":"आज का टेस्ट शुरू करें →";
+        sb.textContent=attempted?(currentLang==="hi"?"आज का टेस्ट पूरा हो चुका है ✓":"Today's test completed ✓"):(currentLang==="hi"?"आज का टेस्ट शुरू करें →":"Start today's quiz →");
     }
 }
 
@@ -377,6 +626,7 @@ function extractTimeTaken(r){
   return val;
 }
 
+// 📚 स्मार्ट प्रश्न रोटेशन लॉजिक
 async function loadSmartQuestions(){
   let pool=[];
   try{
@@ -392,7 +642,7 @@ async function loadSmartQuestions(){
   }catch(e){}
   if(!pool.length) pool=FALLBACK_QUESTIONS[currentClass]||[];
   pool=pool.filter(q=>q&&typeof q==="object");
-  if(!pool.length) throw new Error("प्रश्न उपलब्ध नहीं हैं।");
+  if(!pool.length) throw new Error(currentLang==="hi"?"प्रश्न उपलब्ध नहीं हैं।":"No questions available.");
 
   let activeDaysCount=0;
   try{
@@ -421,12 +671,12 @@ async function startQuiz(){
   const sn=$("studentName"),ds=$("districtSelect");
   const name=sn?sn.value.trim():"",district=ds?ds.value:"";
   
-  if(!name||!district){ toast("कृपया पूरा नाम और ज़िला भरें।"); return; }
-  if(!isAppropriateName(name)){ toast("कृपया एक मान्य और सही नाम दर्ज करें।"); return; }
+  if(!name||!district){ toast(currentLang==="hi"?"कृपया पूरा नाम और ज़िला भरें।":"Please enter your name and select district."); return; }
+  if(!isAppropriateName(name)){ toast(currentLang==="hi"?"कृपया एक मान्य और सही नाम दर्ज करें।":"Please enter a valid, appropriate name."); return; }
   if(safeStorageGet(`nischay_attempt_${currentClass}_${todayKey}`)){ checkDailyAttempt(); return; }
 
   const sb=$("startBtn");
-  if(sb){sb.disabled=true;sb.textContent="जाँच व प्रश्न लोड हो रहे हैं…";}
+  if(sb){sb.disabled=true;sb.textContent=currentLang==="hi"?"जाँच व प्रश्न लोड हो रहे हैं…":"Verifying & loading…";}
 
   try{
     const rows = await fetchSheet();
@@ -448,14 +698,14 @@ async function startQuiz(){
     if(alreadySubmittedToday){
       safeStorageSet(`nischay_attempt_${currentClass}_${todayKey}`, "true");
       checkDailyAttempt();
-      alert("⚠️ आप आज इस कक्षा का टेस्ट पहले ही दे चुके हैं!\nगुप्त मोड (Incognito) या अलग विंडो से दोबारा टेस्ट की अनुमति नहीं है।");
+      alert(currentLang==="hi"?"⚠️ आप आज इस कक्षा का टेस्ट पहले ही दे चुके हैं!\nगुप्त मोड (Incognito) या अलग विंडो से दोबारा टेस्ट की अनुमति नहीं है।":"⚠️ You have already completed today's quiz for this class!");
       return;
     }
 
     currentQuestions = await loadSmartQuestions();
     if(!currentQuestions.length) throw new Error("No questions available");
 
-    if(!confirm(`कक्षा ${currentClass} का टेस्ट शुरू करें? आपके पास 15 मिनट हैं।`)){
+    if(!confirm(currentLang==="hi"?`कक्षा ${currentClass} का टेस्ट शुरू करें? आपके पास 15 मिनट हैं।`:`Start Class ${currentClass} test? You have 15 minutes.`)){
       checkDailyAttempt();
       return;
     }
@@ -468,7 +718,7 @@ async function startQuiz(){
     startTimer();
 
   }catch(e){
-    toast(e.message||"प्रश्न लोड नहीं हुए।");
+    toast(e.message||"Error loading quiz.");
   }finally{
     if(!quizStarted) checkDailyAttempt();
   }
@@ -476,14 +726,14 @@ async function startQuiz(){
 
 function renderQuestion(){
   const q=currentQuestions[qIdx]||{};
-  const qb=$("qBadge"); if(qb) qb.textContent="प्रश्न "+(qIdx+1)+" / "+currentQuestions.length;
+  const qb=$("qBadge"); if(qb) qb.textContent=(currentLang==="hi"?"प्रश्न ":"Question ")+(qIdx+1)+" / "+currentQuestions.length;
   const pb=$("progressBar"); if(pb) pb.style.width=(qIdx/currentQuestions.length*100)+"%";
-  const qt=$("qText"); if(qt) qt.textContent=localized(q.q,currentLang,"प्रश्न उपलब्ध नहीं है");
-  const qcl=$("quizClassLabel"); if(qcl) qcl.textContent="Nischay Quiz • "+currentClass+" • दैनिक मूल्यांकन";
+  const qt=$("qText"); if(qt) qt.textContent=localized(q.q,currentLang,currentLang==="hi"?"प्रश्न उपलब्ध नहीं है":"Question unavailable");
+  const qcl=$("quizClassLabel"); if(qcl) qcl.textContent=`Nischay Quiz • ${currentClass} • `+(currentLang==="hi"?"दैनिक मूल्यांकन":"Daily Assessment");
   const fb=$("factBox"); if(fb){fb.classList.remove("show");fb.textContent="";}
   const nb=$("nextBtn");
-  if(nb){nb.disabled=!answered;nb.textContent=qIdx===currentQuestions.length-1?"टेस्ट सबमिट करें ✓":"अगला प्रश्न →";}
-  const ah=$("answerHint"); if(ah) ah.textContent=answered?"उत्तर लॉक हो गया":"एक विकल्प चुनें";
+  if(nb){nb.disabled=!answered;nb.textContent=qIdx===currentQuestions.length-1?(currentLang==="hi"?"टेस्ट सबमिट करें ✓":"Submit Test ✓"):(currentLang==="hi"?"अगला प्रश्न →":"Next Question →");}
+  const ah=$("answerHint"); if(ah) ah.textContent=answered?(currentLang==="hi"?"उत्तर लॉक हो गया":"Answer locked"):(currentLang==="hi"?"एक विकल्प चुनें":"Choose one option");
   
   let opts=[];
   if(Array.isArray(q.o)) opts=q.o;
@@ -523,12 +773,12 @@ function renderQuestion(){
         if(answered){
           if(origIdx===correct){
             b.classList.add("correct");
-            statusTag.textContent="✓ सही उत्तर";
+            statusTag.textContent=currentLang==="hi"?"✓ सही उत्तर":"✓ Correct";
             statusTag.style.color="var(--green)";
           }
           if(origIdx===selectedAnswer&&selectedAnswer!==correct){
             b.classList.add("wrong");
-            statusTag.textContent="✗ आपका उत्तर";
+            statusTag.textContent=currentLang==="hi"?"✗ आपका उत्तर":"✗ Your Answer";
             statusTag.style.color="var(--red)";
           }
         }
@@ -553,25 +803,25 @@ function handleAnswer(origIdx,btn){
   if(origIdx===correct){
     score++; correctCount++;
     btn.classList.add("correct");
-    if(statusTag){ statusTag.textContent="✓ सही उत्तर"; statusTag.style.color="var(--green)"; }
+    if(statusTag){ statusTag.textContent=currentLang==="hi"?"✓ सही उत्तर":"✓ Correct"; statusTag.style.color="var(--green)"; }
   }else{
     btn.classList.add("wrong");
-    if(statusTag){ statusTag.textContent="✗ आपका उत्तर"; statusTag.style.color="var(--red)"; }
+    if(statusTag){ statusTag.textContent=currentLang==="hi"?"✗ आपका उत्तर":"✗ Your Answer"; statusTag.style.color="var(--red)"; }
     const correctBtn = buttons.find(b => Number(b.dataset.orig) === correct);
     if(correctBtn){
       correctBtn.classList.add("correct");
       const cTag=correctBtn.querySelector(".status-tag");
-      if(cTag){ cTag.textContent="✓ सही उत्तर"; cTag.style.color="var(--green)"; }
+      if(cTag){ cTag.textContent=currentLang==="hi"?"✓ सही उत्तर":"✓ Correct"; cTag.style.color="var(--green)"; }
     }
   }
   
   const fb=$("factBox");
   if(fb){
-      fb.textContent="💡 व्याख्या: "+localized(q.f,currentLang,"");
+      fb.textContent=(currentLang==="hi"?"💡 व्याख्या: ":"💡 Explanation: ")+localized(q.f,currentLang,"");
       fb.classList.add("show");
   }
   const nb=$("nextBtn"); if(nb) nb.disabled=false;
-  const ah=$("answerHint"); if(ah) ah.textContent="उत्तर लॉक हो गया";
+  const ah=$("answerHint"); if(ah) ah.textContent=currentLang==="hi"?"उत्तर लॉक हो गया":"Answer locked";
   const pb=$("progressBar"); if(pb) pb.style.width=((qIdx+1)/currentQuestions.length*100)+"%";
 }
 
@@ -614,8 +864,8 @@ async function submitTest(auto=false){
   const cc=$("correctCount"); if(cc) cc.textContent=correctCount;
   const wc=$("wrongCount"); if(wc) wc.textContent=total-correctCount;
   const pc=$("percentCount"); if(pc) pc.textContent=Math.round(score/Math.max(total,1)*100)+"%";
-  const rs=$("resSummary"); if(rs) rs.textContent=`${name} • ${district} • कक्षा ${currentClass}`;
-  const rh=$("resHeading"); if(rh){rh.dataset.completed="true";rh.textContent=auto?"⏱ समय पूरा हुआ!":"बहुत बढ़िया! टेस्ट पूरा हुआ 🎉";}
+  const rs=$("resSummary"); if(rs) rs.textContent=`${name} • ${district} • ${currentLang==='en'?'Class':'कक्षा'} ${currentClass}`;
+  const rh=$("resHeading"); if(rh){rh.dataset.completed="true";rh.textContent=auto?(currentLang==="hi"?"⏱ समय पूरा हुआ!":"⏱ Time is up!"):(currentLang==="hi"?"बहुत बढ़िया! टेस्ट पूरा हुआ 🎉":"Great work! Quiz completed 🎉");}
   const rm=$("resMsg"); if(rm) rm.dataset.status="sending";
   
   switchView("view-result");
@@ -652,7 +902,7 @@ async function loadLeaderboard(){
   const refBtn=$("refreshBtn");
   if(refBtn) refBtn.classList.add("is-spinning");
   
-  tbody.innerHTML=`<tr><td colspan="5" class="empty">Google Sheets से लोड हो रहा है…</td></tr>`;
+  tbody.innerHTML=`<tr><td colspan="5" class="empty">${currentLang==="hi"?"Google Sheets से लोड हो रहा है…":"Loading from Google Sheets…"}</td></tr>`;
   try{
     const data=await fetchSheet();
     const rows=data.filter(r=>rowClass(r)===normalizeText(currentClass) && rowDate(r)===normalizeDate(todayKey));
@@ -686,7 +936,7 @@ async function loadLeaderboard(){
     const top=sortSubmissions([...map.values()]).slice(0,10);
     
     if(!top.length){
-      tbody.innerHTML=`<tr><td colspan="5" class="empty">आज अभी तक किसी ने टेस्ट नहीं दिया है।</td></tr>`;
+      tbody.innerHTML=`<tr><td colspan="5" class="empty">${currentLang==="hi"?"आज अभी तक किसी ने टेस्ट नहीं दिया है।":"No submissions yet today."}</td></tr>`;
       return;
     }
     
@@ -716,7 +966,7 @@ async function loadLeaderboard(){
       tbody.append(tr);
     });
   }catch(e){
-    tbody.innerHTML=`<tr><td colspan="5" class="empty">Google Sheets से कनेक्शन नहीं हो पाया। Refresh दबाएं।</td></tr>`;
+    tbody.innerHTML=`<tr><td colspan="5" class="empty">${currentLang==="hi"?"Google Sheets से कनेक्शन नहीं हो पाया। Refresh दबाएं।":"Could not connect to Google Sheets. Tap Refresh."}</td></tr>`;
   }finally{
     setTimeout(()=>{ if(refBtn) refBtn.classList.remove("is-spinning"); }, 600);
   }
@@ -741,14 +991,14 @@ async function loadAllToppersData(){
   if(refBtn) refBtn.classList.add("is-spinning");
   if(!tbody)return;
   
-  tbody.innerHTML=`<tr><td colspan="6" class="empty">Google Sheets से रिकॉर्ड लोड हो रहे हैं…</td></tr>`;
+  tbody.innerHTML=`<tr><td colspan="6" class="empty">${currentLang==="hi"?"Google Sheets से रिकॉर्ड लोड हो रहे हैं…":"Loading records from Google Sheets…"}</td></tr>`;
 
   try{
     const data=await fetchSheet();
     const rows=data.filter(r=>rowClass(r)===normalizeText(allToppersClass));
     
     if(!rows.length){
-      tbody.innerHTML=`<tr><td colspan="6" class="empty">इस कक्षा के लिए अभी कोई रिकॉर्ड उपलब्ध नहीं है।</td></tr>`;
+      tbody.innerHTML=`<tr><td colspan="6" class="empty">${currentLang==="hi"?"इस कक्षा के लिए अभी कोई रिकॉर्ड उपलब्ध नहीं है।":"No records found for this class."}</td></tr>`;
       return;
     }
 
@@ -782,7 +1032,7 @@ async function loadAllToppersData(){
     const allSorted=sortSubmissions([...map.values()]);
 
     if(!allSorted.length){
-      tbody.innerHTML=`<tr><td colspan="6" class="empty">कोई वैध रिकॉर्ड नहीं मिला।</td></tr>`;
+      tbody.innerHTML=`<tr><td colspan="6" class="empty">${currentLang==="hi"?"कोई वैध रिकॉर्ड नहीं मिला।":"No valid records found."}</td></tr>`;
       return;
     }
 
@@ -820,7 +1070,7 @@ async function loadAllToppersData(){
     });
 
   }catch(err){
-    tbody.innerHTML=`<tr><td colspan="6" class="empty">डेटा लोड करने में त्रुटि आई। कृपया पुनः प्रयास करें।</td></tr>`;
+    tbody.innerHTML=`<tr><td colspan="6" class="empty">${currentLang==="hi"?"डेटा लोड करने में त्रुटि आई। कृपया पुनः प्रयास करें।":"Error loading data. Please try again."}</td></tr>`;
   }finally{
     setTimeout(()=>{ if(refBtn) refBtn.classList.remove("is-spinning"); }, 600);
   }
@@ -832,7 +1082,7 @@ function verifyAdminPassword(){const ap=$("adminPwdInput"); if(ap&&ap.value===AD
 function fitCanvasText(ctx,text,maxWidth,maxChars=80){let value=Array.from(String(text??"")).slice(0,maxChars).join("");if(ctx.measureText(value).width<=maxWidth)return value;const chars=Array.from(value);while(chars.length>1&&ctx.measureText(chars.join("")+"…").width>maxWidth)chars.pop();return chars.join("")+"…"}
 
 async function generateTopperPoster(ev){
-  const btn=ev.currentTarget,old=btn.textContent;btn.disabled=true;btn.textContent="पोस्टर तैयार हो रहा है…";
+  const btn=ev.currentTarget,old=btn.textContent;btn.disabled=true;btn.textContent=currentLang==="hi"?"पोस्टर तैयार हो रहा है…":"Preparing poster…";
   try{
     const data=await fetchSheet(),rows=data.filter(r=>rowClass(r)===normalizeText(currentClass)&&rowDate(r)===normalizeDate(todayKey)),map=new Map();
     rows.forEach((r, index)=>{
@@ -860,7 +1110,7 @@ async function generateTopperPoster(ev){
     ctx.strokeStyle="#4b8cff";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(70,225);ctx.lineTo(1010,225);ctx.stroke();
     if(!top.length){
       ctx.fillStyle="#fff";ctx.font=`26px ${fontFallback}`;
-      ctx.fillText("अभी कोई रिकॉर्ड उपलब्ध नहीं है",540,620);
+      ctx.fillText(currentLang==="hi"?"अभी कोई रिकॉर्ड उपलब्ध नहीं है":"No records available yet",540,620);
     }
     top.forEach((student,i)=>{
       const y=270+i*91;
@@ -876,12 +1126,14 @@ async function generateTopperPoster(ev){
     });
     ctx.textAlign="center";ctx.fillStyle="#7af2dc";ctx.font=`700 23px ${fontFallback}`;
     ctx.fillText(fitCanvasText(ctx,"JOIN OUR OFFICIAL WHATSAPP CHANNEL",900,60),540,1240);
+    ctx.fillStyle="#b7cbe5";ctx.font=`500 18px ${fontFallback}`;
+    ctx.fillText(fitCanvasText(ctx,"Daily practice • Smart quizzes • Academic growth",900,70),540,1280);
     const a=document.createElement("a");
     a.download=`Nischay_Top10_${currentClass}_${todayKey}.png`;
     a.href=c.toDataURL("image/png");a.click();
-    toast("HD पोस्टर डाउनलोड हो गया।");
+    toast(currentLang==="hi"?"HD पोस्टर डाउनलोड हो गया।":"HD poster downloaded.");
   }catch(e){
-    toast("पोस्टर बनाने में समस्या हुई।");
+    toast(currentLang==="hi"?"पोस्टर बनाने में समस्या हुई।":"Error creating poster.");
   }finally{
     btn.disabled=false;btn.textContent=old;
   }
